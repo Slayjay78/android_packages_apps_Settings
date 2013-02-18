@@ -169,6 +169,8 @@ public class DevelopmentSettings extends SettingsPreferenceFragment
 
     private static String DEFAULT_LOG_RING_BUFFER_SIZE_IN_BYTES = "262144"; // 256K
 
+    private static final String ADVANCED_REBOOT_KEY = "advanced_reboot";
+
     private IWindowManager mWindowManager;
     private IBackupManager mBackupManager;
     private DevicePolicyManager mDpm;
@@ -234,6 +236,8 @@ public class DevelopmentSettings extends SettingsPreferenceFragment
 
     private CheckBoxPreference mShowAllANRs;
     private CheckBoxPreference mKillAppLongpressBack;
+
+    private CheckBoxPreference mAdvancedReboot;
 
     private PreferenceScreen mProcessStats;
     private final ArrayList<Preference> mAllPrefs = new ArrayList<Preference>();
@@ -303,6 +307,7 @@ public class DevelopmentSettings extends SettingsPreferenceFragment
         mDebugViewAttributes = findAndInitCheckboxPref(DEBUG_VIEW_ATTRIBUTES);
         mPassword = (PreferenceScreen) findPreference(LOCAL_BACKUP_PASSWORD);
         mAllPrefs.add(mPassword);
+        mAdvancedReboot = findAndInitCheckboxPref(ADVANCED_REBOOT_KEY);
 
 
         if (!android.os.Process.myUserHandle().equals(UserHandle.OWNER)) {
@@ -310,6 +315,7 @@ public class DevelopmentSettings extends SettingsPreferenceFragment
             disableForUser(mClearAdbKeys);
             disableForUser(mEnableTerminal);
             disableForUser(mPassword);
+            disableForUser(mAdvancedReboot);
         }
 
         mDebugAppPref = findPreference(DEBUG_APP_KEY);
@@ -554,6 +560,18 @@ public class DevelopmentSettings extends SettingsPreferenceFragment
         updateSimulateColorSpace();
         updateUseNuplayerOptions();
         updateUSBAudioOptions();
+        updateAdvancedRebootOptions();
+    }
+
+    private void writeAdvancedRebootOptions() {
+        Settings.Secure.putInt(getActivity().getContentResolver(),
+                Settings.Secure.ADVANCED_REBOOT,
+                mAdvancedReboot.isChecked() ? 1 : 0);
+    }
+
+    private void updateAdvancedRebootOptions() {
+        mAdvancedReboot.setChecked(Settings.Secure.getInt(getActivity().getContentResolver(),
+                Settings.Secure.ADVANCED_REBOOT, 0) != 0);
     }
 
     private void resetDangerousOptions() {
@@ -1446,6 +1464,8 @@ public class DevelopmentSettings extends SettingsPreferenceFragment
             writeUSBAudioOptions();
         } else if (preference == mKillAppLongpressBack) {
             writeKillAppLongpressBackOptions();
+        } else if (preference == mAdvancedReboot) {
+            writeAdvancedRebootOptions();
         } else {
             return super.onPreferenceTreeClick(preferenceScreen, preference);
         }
