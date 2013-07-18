@@ -79,4 +79,12 @@
     <string name="battery_light_low_color_title">Battery low</string>
     <string name="battery_light_medium_color_title">Medium charge</string>
     <string name="battery_light_full_color_title">Fully charged</string>
+	
+	<!--  Plug-in prompt -->
+    <string name="plug_in_prompt_settings_title">Plug-in prompt</string>
+
+    <!-- Turn on display when power connected; turn off display when power disconnected -->
+    <string name="wake_when_plugged_or_unplugged_title">Wake on plug</string>
+    <string name="wake_when_plugged_or_unplugged_summary">Turn the screen on when plugged/unplugged</string>
+
 </resources>
