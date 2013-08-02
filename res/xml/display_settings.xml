@@ -51,6 +51,17 @@
                 android:entries="@array/entries_font_size"
                 android:entryValues="@array/entryvalues_font_size"
                 android:dialogTitle="@string/dialog_title_font_size" />
+				
+		<PreferenceCategory
+            android:key="category_navigation_bar"
+            android:title="@string/display_category_navigation_bar_title" >		
+				
+		<PreferenceScreen
+				android:key="navigation_bar"
+				android:fragment="com.android.settings.rascarlo.NavigationBarSettings"
+				android:title="@string/navigation_bar_title" />		
+				
+		</PreferenceCategory>		
 
         <PreferenceCategory
             android:key="category_light_options"
