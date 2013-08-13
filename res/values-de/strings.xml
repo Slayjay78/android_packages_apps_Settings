@@ -2043,4 +2043,23 @@
     <string name="user_image_take_photo" msgid="1280274310152803669">"Foto aufnehmen"</string>
     <string name="user_image_choose_photo" msgid="7940990613897477057">"Foto aus Galerie auswählen"</string>
     <string name="regulatory_info_text" msgid="5623087902354026557"></string>
+	<!-- Powermenu Options -->
+    <string name="powermenu_title">Auswahl Stromschalter</string>
+    <string name="powermenu_prefs_always">Immer</string>
+    <string name="powermenu_prefs_onlyunlocked">Nur wenn Entriegelt</string>
+    <string name="powermenu_prefs_never">Niemals</string>
+
+    <string name="powermenu_reboot_prefs_title">Neustart</string>
+    <string name="powermenu_reboot_prefs_summary">%1$s sichtbar</string>
+    <string name="powermenu_shutdown_prefs_title">Ausschalten</string>
+    <string name="powermenu_shutdown_prefs_summary">%1$s sichtbar</string>
+    <string name="powermenu_airplanemode_prefs_title">Flugzeugmodus</string>
+    <string name="powermenu_airplanemode_prefs_summary">%1$s sichtbar</string>
+    <string name="powermenu_silentmode_prefs_title">Stumm-Modus</string>
+    <string name="powermenu_silentmode_prefs_summary">%1$s sichtbar</string>
+    <string name="powermenu_userswitch_prefs_title">Benutzerauswahl</string>
+    <string name="powermenu_userswitch_prefs_summary">%1$s Sichtbar</string>
+    <string name="powermenu_screenshot_prefs_title">Screenshot</string>
+    <string name="powermenu_screenshot_prefs_summary">%1$s</string>
+	
 </resources>

@@ -1704,6 +1704,12 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+		
+		<!-- Powermenu Start -->
+
+        <activity android:name="PowermenuSettings" />
+
+        <!-- Powermenu End -->
 
         <receiver android:name=".widget.SettingsAppWidgetProvider"
                 android:label="@string/gadget_title"

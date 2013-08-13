@@ -86,5 +86,26 @@
     <!-- Turn on display when power connected; turn off display when power disconnected -->
     <string name="wake_when_plugged_or_unplugged_title">Wake on plug</string>
     <string name="wake_when_plugged_or_unplugged_summary">Turn the screen on when plugged/unplugged</string>
+	
+	<!-- Powermenu Options -->
+    <string name="powermenu_title">Power menu</string>
+    <string name="powermenu_prefs_always">Always visible</string>
+    <string name="powermenu_prefs_onlyunlocked">Only visible while unlocked</string>
+    <string name="powermenu_prefs_never">Never visible</string>
+
+    <string name="powermenu_reboot_prefs_title">Reboot</string>
+    <string name="powermenu_reboot_prefs_summary">%1$s</string>
+    <string name="powermenu_shutdown_prefs_title">Shutdown</string>
+    <string name="powermenu_shutdown_prefs_summary">%1$s</string>
+    <string name="powermenu_airplanemode_prefs_title">Airplane Mode</string>
+    <string name="powermenu_airplanemode_prefs_summary">%1$s</string>
+    <string name="powermenu_silentmode_prefs_title">Silent Mode</string>
+    <string name="powermenu_silentmode_prefs_summary">%1$s</string>
+    <string name="powermenu_userswitch_prefs_title">User Selection</string>
+    <string name="powermenu_userswitch_prefs_summary">%1$s</string>
+    <string name="powermenu_screenshot_prefs_title">Screenshot</string>
+    <string name="powermenu_screenshot_prefs_summary">%1$s</string>
+	<string name="powermenu_torch_prefs_title">Torch</string>
+    <string name="powermenu_torch_prefs_summary">%1$s</string>
 
 </resources>
