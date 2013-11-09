@@ -7,6 +7,15 @@
     <string name="build_date_default">2012-01-01-0000</string>
 	
 	<string name="ok">OK</string>
+	
+	<!-- Wakeup options -->
+    <string name="display_category_wakeup_options_title">Wakeup options</string>
+    <string name="pref_volume_wake_title">Volume rocker wake</string>
+    <string name="pref_volume_wake_summary">Pressing the volume rocker up/down will wake the device</string>
+
+    <!-- Volume rocker music control -->
+    <string name="volbtn_music_controls_title">Volume rocker music controls</string>
+    <string name="volbtn_music_controls_summary">When screen off, long-pressing the volume rockers will seek music tracks</string>
     
     <!-- Volume Adjust sound -->
     <string name="volume_adjust_sounds_enable_title">Volume adjustment sound</string>
