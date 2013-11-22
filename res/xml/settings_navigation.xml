@@ -8,6 +8,12 @@
             android:title="@string/navbar_enable_bar"
             android:defaultValue="true" />
 
+    <PreferenceScreen
+        android:key="navigation_bar"
+        android:fragment="com.android.settings.cyanogenmod.NavBar"
+        android:summary="@string/navigation_bar_settings_summary"
+        android:title="@string/navigation_bar_buttons" />
+
         <PreferenceScreen
             android:key="navigation_bar_dimen"
             android:fragment="com.android.settings.velocity.NavBarDimen"

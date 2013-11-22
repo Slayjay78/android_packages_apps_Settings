@@ -112,7 +112,7 @@ public class NavBarDimen extends SettingsPreferenceFragment implements
 
     @Override
     protected int getMetricsCategory() {
-        return MetricsLogger.NAV_DIMENSION_SETTINGS;
+        return MetricsLogger.DISPLAY;
     }
 
     @Override
