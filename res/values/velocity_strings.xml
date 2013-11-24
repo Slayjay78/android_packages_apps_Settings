@@ -107,10 +107,13 @@
     <string name="powermenu_screenshot_prefs_summary">%1$s</string>
 	<string name="powermenu_torch_prefs_title">Torch</string>
     <string name="powermenu_torch_prefs_summary">%1$s</string>
-    <string name="power_menu_expanded_desktop">Expanded desktop</string>
-    <string name="expanded_desktop_disabled">Disabled</string>
-    <string name="expanded_desktop_status_bar">Status bar visible</string>
-    <string name="expanded_desktop_no_status_bar">Status bar hidden</string>
+    <string name="power_menu_immersive_mode">Immersive mode</string>
+    <string name="summary_immersive_mode">%1$s</string>
+    <string name="immersive_mode_summary_status_bar">With status bar</string>
+    <string name="immersive_mode_summary_no_status_bar">Without status bar</string>
+    <string name="immersive_mode_disabled">Off</string>
+    <string name="immersive_mode_status_bar">With status bar</string>
+    <string name="immersive_mode_no_status_bar">Without status bar</string>
 	
 	<!-- Quiet hours -->
     <string name="quiet_hours_title">Quiet hours</string>
