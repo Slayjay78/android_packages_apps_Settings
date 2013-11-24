@@ -41,6 +41,7 @@ public class PowermenuSettings extends SettingsPreferenceFragment implements OnP
     private static final String KEY_POWERMENU_USERSWITCH_PREFS ="powermenu_userswitch_prefs";
     private static final String KEY_POWERMENU_SCREENSHOT_PREFS ="powermenu_screenshot_prefs";
 	private static final String KEY_POWERMENU_TORCH_PREFS ="powermenu_torch_prefs";
+    private static final String KEY_EXPANDED_DESKTOP = "power_menu_expanded_desktop";
 
     private ListPreference mPowermenuRebootPrefs;
     private ListPreference mPowermenuShutdownPrefs;
@@ -49,6 +50,7 @@ public class PowermenuSettings extends SettingsPreferenceFragment implements OnP
     private ListPreference mPowermenuUserswitchPrefs;
     private ListPreference mPowermenuScreenshotPrefs;
 	private ListPreference mPowermenuTorchPrefs;
+    ListPreference mExpandedDesktopPref;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -57,6 +59,12 @@ public class PowermenuSettings extends SettingsPreferenceFragment implements OnP
         addPreferencesFromResource(R.xml.powermenu_settings);
 
         PreferenceScreen prefSet = getPreferenceScreen();
+
+        mExpandedDesktopPref = (ListPreference) prefSet.findPreference(KEY_EXPANDED_DESKTOP);
+        mExpandedDesktopPref.setOnPreferenceChangeListener(this);
+        int expandedDesktopValue = Settings.System.getInt(getContentResolver(), Settings.System.EXPANDED_DESKTOP_STYLE, 0);
+        mExpandedDesktopPref.setValue(String.valueOf(expandedDesktopValue));
+        updateExpandedDesktopSummary(expandedDesktopValue);
 
        // Powermenu Reboot selection
         mPowermenuRebootPrefs = (ListPreference) prefSet.findPreference(KEY_POWERMENU_REBOOT_PREFS);
@@ -208,7 +216,33 @@ public class PowermenuSettings extends SettingsPreferenceFragment implements OnP
             updatePowermenuTorchPrefs(mPowermenuTorchPrefsValue);
             getActivity().recreate();
             return true;
-        }	
+        } else if (preference == mExpandedDesktopPref) {
+            int expandedDesktopValue = Integer.valueOf((String) objValue);
+            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
+                    Settings.System.EXPANDED_DESKTOP_STYLE, expandedDesktopValue);
+            updateExpandedDesktopSummary(expandedDesktopValue);
+            getActivity().recreate();
+            return true;
+        }
         return false;
+    }
+
+    private void updateExpandedDesktopSummary(int value) {
+        Resources res = getResources();
+
+        if (value == 0) {
+            // Expanded desktop deactivated
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.POWER_MENU_EXPANDED_DESKTOP_ENABLED, 0);
+            mExpandedDesktopPref.setSummary(res.getString(R.string.expanded_desktop_disabled));
+        } else if (value == 1) {
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.POWER_MENU_EXPANDED_DESKTOP_ENABLED, 1);
+            mExpandedDesktopPref.setSummary(res.getString(R.string.expanded_desktop_status_bar));
+        } else if (value == 2) {
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.POWER_MENU_EXPANDED_DESKTOP_ENABLED, 1);
+            mExpandedDesktopPref.setSummary(res.getString(R.string.expanded_desktop_no_status_bar));
+        }
     }
 }

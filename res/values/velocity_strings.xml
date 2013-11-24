@@ -107,6 +107,10 @@
     <string name="powermenu_screenshot_prefs_summary">%1$s</string>
 	<string name="powermenu_torch_prefs_title">Torch</string>
     <string name="powermenu_torch_prefs_summary">%1$s</string>
+    <string name="power_menu_expanded_desktop">Expanded desktop</string>
+    <string name="expanded_desktop_disabled">Disabled</string>
+    <string name="expanded_desktop_status_bar">Status bar visible</string>
+    <string name="expanded_desktop_no_status_bar">Status bar hidden</string>
 	
 	<!-- Quiet hours -->
     <string name="quiet_hours_title">Quiet hours</string>
