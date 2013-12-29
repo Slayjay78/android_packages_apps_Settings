@@ -6,4 +6,8 @@
      <string name="battery_bar_percent">Battery bar &amp; percent</string>
      <string name="battery_circle">Battery circle</string>
      <string name="battery_circle_percent">Battery circle &amp; percent</string>
+
+    <!--AppOps-->
+    <string name="appops_settings_title">App ops</string>
+   
 </resources>
