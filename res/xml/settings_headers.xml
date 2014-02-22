@@ -212,6 +212,14 @@
         android:title="@string/appops_settings_title"
         android:id="@+id/appops_settings" />
 
+    <!-- Wakelock Blocker -->
+    <header
+        android:id="@+id/wakelock_blocker"
+        android:fragment="com.android.settings.psx.WakeLockBlocker"
+        android:icon="@drawable/ic_settings_wakelock_blocker"
+        android:layout="@layout/preference_wakelockblocker"
+        android:title="@string/wakelock_blocker" />
+
     <!-- Date & Time -->
     <header
         android:id="@+id/date_time_settings"
