@@ -109,6 +109,12 @@
                 android:title="@string/power_menu_expanded_desktop"
                 android:fragment="com.android.settings.applications.ExpandedDesktopPreferenceFragment" />
 
+    <!-- Screen Recorder -->
+    <PreferenceScreen
+         android:key="screen_recorder"
+         android:title="@string/screen_recorder_title"
+         android:fragment="com.android.settings.crdroid.ScreenRecorderSettings" />
+
         <PreferenceCategory
             android:key="category_doze_options"
             android:title="@string/display_category_doze_options_title" >
