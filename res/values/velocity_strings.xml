@@ -228,5 +228,12 @@
     <string name="clock_date_style_uppercase">Uppercase</string>
     <string name="clock_date_format_custom">Custom java format</string>
     <string name="status_bar_clock_style_reset_message">Reset clock color?</string>
+	
+	<!--Battery Icon selection-->
+     <string name="battery_status_icon_title">Status icon</string>
+     <string name="battery_bar">Battery bar</string>
+     <string name="battery_bar_percent">Battery bar &amp; percent</string>
+     <string name="battery_circle">Battery circle</string>
+     <string name="battery_circle_percent">Battery circle &amp; percent</string>
 
 </resources>
