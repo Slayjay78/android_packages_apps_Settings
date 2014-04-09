@@ -19,10 +19,11 @@
     android:key="button_blacklist"
     android:title="@string/blacklist_title" >
 
-    <org.omnirom.omnigears.preference.SystemCheckBoxPreference
-        android:key="phone_blacklist_notify_enabled"
+    <CheckBoxPreference
+        android:key="button_notify"
         android:title="@string/blacklist_notify"
-        android:defaultValue="true" />
+        android:defaultValue="true"
+        android:persistent="false" />
 
     <MultiSelectListPreference
         android:key="button_blacklist_private_numbers"
@@ -40,10 +41,10 @@
         android:entryValues="@array/blacklist_policy_unknown_values"
         android:persistent="false" />
 
-    <org.omnirom.omnigears.preference.SystemCheckBoxPreference
-        android:key="phone_blacklist_regex_enabled"
+    <CheckBoxPreference
+        android:key="button_blacklist_regex"
         android:title="@string/blacklist_regex_title"
         android:summary="@string/blacklist_regex_summary"
-        android:defaultValue="false" />
+        android:persistent="false" />
 
 </PreferenceScreen>
