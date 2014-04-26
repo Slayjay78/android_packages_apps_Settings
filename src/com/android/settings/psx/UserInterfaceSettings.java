@@ -1,8 +1,13 @@
 package com.android.settings.psx;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.DialogInterface;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -13,6 +18,7 @@ import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceScreen;
 import android.provider.Settings;
+import android.provider.Settings.SettingNotFoundException;
 
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
@@ -41,7 +47,15 @@ public class UserInterfaceSettings extends SettingsPreferenceFragment implements
     private static final String ROTATION_ANGLE_90 = "90";
     private static final String ROTATION_ANGLE_180 = "180";
     private static final String ROTATION_ANGLE_270 = "270";
-	
+    private static final String RECENTS_USE_OMNISWITCH = "recents_use_omniswitch";
+    private static final String OMNISWITCH_START_SETTINGS = "omniswitch_start_settings";
+
+    // Package name of the omnniswitch app
+    public static final String OMNISWITCH_PACKAGE_NAME = "org.omnirom.omniswitch";
+    // Intent for launching the omniswitch settings actvity
+    public static Intent INTENT_OMNISWITCH_SETTINGS = new Intent(Intent.ACTION_MAIN)
+            .setClassName(OMNISWITCH_PACKAGE_NAME, OMNISWITCH_PACKAGE_NAME + ".SettingsActivity");	
+
     private ListPreference mCrtMode;
     private PreferenceCategory mLightOptions;
     private PreferenceScreen mNotificationPulse;
@@ -50,6 +64,9 @@ public class UserInterfaceSettings extends SettingsPreferenceFragment implements
     private ListPreference mImmersiveModePref;
     private CheckBoxPreference mImmersiveModeState;
     private ListPreference mClearRecentsLocation;
+    private CheckBoxPreference mRecentsUseOmniSwitch;
+    private Preference mOmniSwitchSettings;
+    private boolean mOmniSwitchInitCalled;
 	
     private ContentObserver mAccelerometerRotationObserver = 
             new ContentObserver(new Handler()) {
@@ -126,6 +143,18 @@ public class UserInterfaceSettings extends SettingsPreferenceFragment implements
 
         mDisplayRotationPreference = (PreferenceScreen) findPreference(KEY_DISPLAY_ROTATION);
 
+        mRecentsUseOmniSwitch = (CheckBoxPreference) prefSet.findPreference(RECENTS_USE_OMNISWITCH);
+        try {
+            mRecentsUseOmniSwitch.setChecked(Settings.System.getInt(getContentResolver(),
+                    Settings.System.RECENTS_USE_OMNISWITCH) == 1);
+            mOmniSwitchInitCalled = true;
+        } catch(SettingNotFoundException e){
+            // if the settings value is unset
+        }
+        mRecentsUseOmniSwitch.setOnPreferenceChangeListener(this);
+        mOmniSwitchSettings = (Preference)
+                prefSet.findPreference(OMNISWITCH_START_SETTINGS);
+        mOmniSwitchSettings.setEnabled(mRecentsUseOmniSwitch.isChecked());
     }
     
     private void updateImmersiveModeState(int value) {
@@ -156,6 +185,10 @@ public class UserInterfaceSettings extends SettingsPreferenceFragment implements
 	
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
+        if (preference == mOmniSwitchSettings){
+            startActivity(INTENT_OMNISWITCH_SETTINGS);
+            return true;
+        }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
 
@@ -169,27 +202,45 @@ public class UserInterfaceSettings extends SettingsPreferenceFragment implements
                     Settings.System.SYSTEM_POWER_CRT_MODE,
                     value);
             mCrtMode.setSummary(mCrtMode.getEntries()[index]);
-	    return true;
         } else if (preference == mImmersiveModePref) {
             int immersiveModeValue = Integer.valueOf((String) objValue);
             Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
                     Settings.System.GLOBAL_IMMERSIVE_MODE_STYLE, immersiveModeValue);
              updateImmersiveModeSummary(immersiveModeValue);
              updateImmersiveModeState(immersiveModeValue);
-             return true;
         } else if (preference == mClearRecentsLocation) {
             int CrlValue = Integer.valueOf((String) objValue);
             Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
                     Settings.System.CLEAR_ALL_LAYOUT, CrlValue);
              updateClearRecentsLocation(CrlValue);
-             return true;
         } else if (preference == mImmersiveModeState) {
             Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
                     Settings.System.GLOBAL_IMMERSIVE_MODE_STATE,
                     (Boolean) objValue ? 1 : 0);
-            return true;
-        }        // TODO Auto-generated method stub
-        return false;
+        } else if (preference == mRecentsUseOmniSwitch) {
+            boolean value = (Boolean) objValue;
+            if (value && !isOmniSwitchInstalled()){
+                openOmniSwitchNotInstalledWarning();
+                return false;
+            }
+
+            // if value has never been set before
+            if (value && !mOmniSwitchInitCalled){
+                openOmniSwitchFirstTimeWarning();
+                mOmniSwitchInitCalled = true;
+            }
+
+            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
+                    Settings.System.RECENTS_USE_OMNISWITCH, value ? 1 : 0);
+            mOmniSwitchSettings.setEnabled(value && isOmniSwitchInstalled());
+            mOmniSwitchSettings.setSummary(isOmniSwitchInstalled() ?
+                    getResources().getString(R.string.omniswitch_start_settings_summary) :
+                    getResources().getString(R.string.omniswitch_not_installed_summary));
+        } else {
+            return false;
+        }
+
+        return true;
     }
 	
     @Override
@@ -277,4 +328,34 @@ public class UserInterfaceSettings extends SettingsPreferenceFragment implements
         }
     }	
 
+
+    private void openOmniSwitchNotInstalledWarning() {
+        new AlertDialog.Builder(getActivity())
+                .setTitle(getResources().getString(R.string.omniswitch_not_installed_title))
+                .setMessage(getResources().getString(R.string.omniswitch_not_installed_message))
+                .setNegativeButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                        }
+                }).show();
+    }
+
+    private void openOmniSwitchFirstTimeWarning() {
+        new AlertDialog.Builder(getActivity())
+                .setTitle(getResources().getString(R.string.omniswitch_first_time_title))
+                .setMessage(getResources().getString(R.string.omniswitch_first_time_message))
+                .setNegativeButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                        }
+                }).show();
+    }
+
+    private boolean isOmniSwitchInstalled() {
+        final PackageManager pm = getPackageManager();
+        try {
+            pm.getPackageInfo(OMNISWITCH_PACKAGE_NAME, PackageManager.GET_ACTIVITIES);
+            return true;
+        } catch (NameNotFoundException e) {
+            return false;
+        }
+    }
 }
