@@ -9,6 +9,7 @@
     <!-- General strings -->
     <string name="ok">OK</string>
     <string name="ok_string">Ok</string>
+    <string name="font_size_sample">Sample</string>
     <string name="reset">Reset</string>
     <string name="reset_string">Reset</string>
     <string name="attention">Attention</string>
