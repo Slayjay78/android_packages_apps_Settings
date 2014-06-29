@@ -38,15 +38,32 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
 
     private static final String TAG = "StatusBarSettings";
 
+    private static final String STATUS_BAR_NOTIF_COUNT = "status_bar_notif_count";
+
+    private CheckBoxPreference mStatusBarNotifCount;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         addPreferencesFromResource(R.xml.status_bar_settings);
 
+        PreferenceScreen prefSet = getPreferenceScreen();
+
+        mStatusBarNotifCount =
+            (CheckBoxPreference) prefSet.findPreference(STATUS_BAR_NOTIF_COUNT);
+        mStatusBarNotifCount.setChecked((Settings.System.getInt(getContentResolver(),
+                Settings.System.STATUS_BAR_NOTIF_COUNT, 0) == 1));
+        mStatusBarNotifCount.setOnPreferenceChangeListener(this);
+
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
+        if (preference == mStatusBarNotifCount) {
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.STATUS_BAR_NOTIF_COUNT,
+                    (Boolean) newValue ? 1 : 0);
+        }
         return false;
     }
 
