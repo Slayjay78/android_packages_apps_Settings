@@ -27,9 +27,11 @@
                 android:title="@string/wallpaper_settings_title"
                 android:fragment="com.android.settings.WallpaperTypeSettings" />
 
-        <CheckBoxPreference
-            android:key="accelerometer"
-            android:title="@string/accelerometer_title"/>
+    <!-- Display Rotation -->
+        <PreferenceScreen
+                android:key="display_rotation"
+                android:fragment="com.android.settings.psx.DisplayRotation"
+                android:title="@string/display_rotation_title" />		
 
         <ListPreference
                 android:key="screen_timeout"
