@@ -81,6 +81,14 @@ public class PowermenuSettings extends SettingsPreferenceFragment implements OnP
                                  Settings.System.POWERMENU_AIRPLANEMODE_PREFS, 2);
         mPowermenuAirplanemodePrefs.setValue(String.valueOf(mPowermenuAirplanemodePrefsValue));
         updatePowermenuAirplanemodePrefs(mPowermenuAirplanemodePrefsValue);
+		
+		// Powermenu Torch selection
+        mPowermenuTorchPrefs = (ListPreference) prefSet.findPreference(KEY_POWERMENU_TORCH_PREFS);
+        mPowermenuTorchPrefs.setOnPreferenceChangeListener(this);
+        int mPowermenuTorchPrefsValue = Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
+                                 Settings.System.POWERMENU_TORCH_PREFS, 2);
+        mPowermenuTorchPrefs.setValue(String.valueOf(mPowermenuTorchPrefsValue));
+        updatePowermenuTorchPrefs(mPowermenuTorchPrefsValue);
 
         // Powermenu Silentmode selection
         mPowermenuSilentmodePrefs = (ListPreference) prefSet.findPreference(KEY_POWERMENU_SILENTMODE_PREFS);
@@ -191,6 +199,13 @@ public class PowermenuSettings extends SettingsPreferenceFragment implements OnP
             Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
                     Settings.System.POWERMENU_SCREENSHOT_PREFS, mPowermenuScreenshotPrefsValue);
             updatePowermenuScreenshotPrefs(mPowermenuScreenshotPrefsValue);
+            getActivity().recreate();
+            return true;
+        } else if (preference == mPowermenuTorchPrefs) {
+            int mPowermenuTorchPrefsValue = Integer.valueOf((String) objValue);
+            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
+                    Settings.System.POWERMENU_TORCH_PREFS, mPowermenuTorchPrefsValue);
+            updatePowermenuTorchPrefs(mPowermenuTorchPrefsValue);
             getActivity().recreate();
             return true;
         }	
