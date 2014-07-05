@@ -61,4 +61,11 @@
     <string name="pie_battery_juice_low_color_summary">Color of the battery indicator in low percentage</string>
     <string name="pie_battery_juice_critical_color_summary">Color of the battery indicator in critical percentage</string>
 
+    <!--Notification category-->
+    <string name="notification_category">Notifications</string>
+
+    <!--Notification peek-->
+    <string name="notification_peek_title">Notification peek</string>
+    <string name="notification_peek_summary">Show latest notification after picking up your device</string>
+
 </resources>
