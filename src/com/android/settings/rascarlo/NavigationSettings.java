@@ -27,6 +27,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.UserHandle;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -44,14 +45,14 @@ import com.android.settings.Utils;
 public class  NavigationSettings extends SettingsPreferenceFragment
         implements OnPreferenceChangeListener {
 
-
-    private static final String TAG = "peekstate";
-
     private static final String KEY_PEEK = "notification_peek";
-
+    private static final String PREF_HOVER_EXCLUDE_NON_CLEARABLE = "hover_exclude_non_clearable";
+    private static final String PREF_HOVER_EXCLUDE_LOW_PRIORITY = "hover_exclude_low_priority";
     private static final String PEEK_APPLICATION = "com.jedga.peek";
 
     private CheckBoxPreference mNotificationPeek;
+    private CheckBoxPreference mHoverExcludeNonClearable;
+    private CheckBoxPreference mHoverExcludeNonLowPriority;
 
     private PackageStatusReceiver mPackageStatusReceiver;
     private IntentFilter mIntentFilter;
@@ -75,7 +76,17 @@ public class  NavigationSettings extends SettingsPreferenceFragment
         super.onCreate(savedInstanceState);
         ContentResolver resolver = getActivity().getContentResolver();
 
-        addPreferencesFromResource(R.xml.display_settings);
+        addPreferencesFromResource(R.xml.navigation_settings);
+
+        mHoverExcludeNonClearable = (CheckBoxPreference) findPreference(PREF_HOVER_EXCLUDE_NON_CLEARABLE);
+        mHoverExcludeNonClearable.setChecked(Settings.System.getIntForUser(getContentResolver(),
+                Settings.System.HOVER_EXCLUDE_NON_CLEARABLE, 0, UserHandle.USER_CURRENT) == 1);
+        mHoverExcludeNonClearable.setOnPreferenceChangeListener(this);
+
+        mHoverExcludeNonLowPriority = (CheckBoxPreference) findPreference(PREF_HOVER_EXCLUDE_LOW_PRIORITY);
+        mHoverExcludeNonLowPriority.setChecked(Settings.System.getIntForUser(getContentResolver(),
+                Settings.System.HOVER_EXCLUDE_LOW_PRIORITY, 0, UserHandle.USER_CURRENT) == 1);
+        mHoverExcludeNonLowPriority.setOnPreferenceChangeListener(this);
 
         mNotificationPeek = (CheckBoxPreference) findPreference(KEY_PEEK);
         mNotificationPeek.setPersistent(false);   
@@ -102,7 +113,19 @@ public class  NavigationSettings extends SettingsPreferenceFragment
         mNotificationPeek.setEnabled(!isPeekAppInstalled());
     }
 
-    public boolean onPreferenceChange(Preference preference, Object newValue) {
+    @Override
+    public boolean onPreferenceChange(Preference preference, Object objValue) {
+        if (preference == mHoverExcludeNonClearable) {
+            Settings.System.putIntForUser(getContentResolver(),
+                    Settings.System.HOVER_EXCLUDE_NON_CLEARABLE,
+                    (Boolean) objValue ? 1 : 0, UserHandle.USER_CURRENT);
+            return true;
+        } else if (preference == mHoverExcludeNonLowPriority) {
+            Settings.System.putIntForUser(getContentResolver(),
+                    Settings.System.HOVER_EXCLUDE_LOW_PRIORITY,
+                    (Boolean) objValue ? 1 : 0, UserHandle.USER_CURRENT);
+            return true;
+        }
         return false;
     }
 

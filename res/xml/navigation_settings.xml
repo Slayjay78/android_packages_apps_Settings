@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="@string/notification_category">
+	
+     <PreferenceCategory
+        android:key="hover_settings_title"
+        android:title="@string/hover_settings_title">
+
+     <CheckBoxPreference
+        android:key="hover_exclude_non_clearable"
+        android:title="@string/hover_exclude_non_clearable_title"
+        android:summary="@string/hover_exclude_non_clearable_summary"
+        android:defaultValue="false" />
+
+    <CheckBoxPreference
+        android:key="hover_exclude_low_priority"
+        android:title="@string/hover_exclude_low_priority_title"
+        android:summary="@string/hover_exclude_low_priority_summary"
+        android:defaultValue="false" />
+
+    </PreferenceCategory>
+
+        <PreferenceCategory
+            android:key="notification_peek_title"
+            android:title="@string/notification_peek_title"/>
+
+        <CheckBoxPreference
+            android:key="notification_peek"
+            android:title="@string/notification_peek_title"
+            android:summary="@string/notification_peek_summary" />
+
+</PreferenceScreen>

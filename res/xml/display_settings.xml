@@ -132,8 +132,8 @@
                 android:title="@string/wifi_display_settings_title"
                 android:fragment="com.android.settings.wfd.WifiDisplaySettings" />
 
-            <CheckBoxPreference
-                android:key="notification_peek"
-                android:title="@string/notification_peek_title"
+            <PreferenceScreen
+                android:key="navigation_settings"
+                android:title="@string/notification_category"
                 android:fragment="com.android.settings.rascarlo.NavigationSettings" />
 </PreferenceScreen>
