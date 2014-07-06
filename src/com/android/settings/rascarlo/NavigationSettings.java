@@ -46,13 +46,19 @@ public class  NavigationSettings extends SettingsPreferenceFragment
         implements OnPreferenceChangeListener {
 
     private static final String KEY_PEEK = "notification_peek";
+    private static final String PREF_HOVER_LONG_FADE_OUT_DELAY = "hover_long_fade_out_delay";
     private static final String PREF_HOVER_EXCLUDE_NON_CLEARABLE = "hover_exclude_non_clearable";
     private static final String PREF_HOVER_EXCLUDE_LOW_PRIORITY = "hover_exclude_low_priority";
+    private static final String PREF_HOVER_EXCLUDE_TOPMOST = "hover_exclude_topmost";
+    private static final String PREF_HOVER_EXCLUDE_FROM_INSECURE_LOCK_SCREEN = "hover_exclude_from_insecure_lock_screen";
     private static final String PEEK_APPLICATION = "com.jedga.peek";
 
+    private ListPreference mHoverLongFadeOutDelay;
     private CheckBoxPreference mNotificationPeek;
     private CheckBoxPreference mHoverExcludeNonClearable;
     private CheckBoxPreference mHoverExcludeNonLowPriority;
+    private CheckBoxPreference mHoverExcludeTopmost;
+    private CheckBoxPreference mHoverExcludeFromInsecureLockScreen;
 
     private PackageStatusReceiver mPackageStatusReceiver;
     private IntentFilter mIntentFilter;
@@ -77,6 +83,14 @@ public class  NavigationSettings extends SettingsPreferenceFragment
         ContentResolver resolver = getActivity().getContentResolver();
 
         addPreferencesFromResource(R.xml.navigation_settings);
+        PreferenceScreen prefSet = getPreferenceScreen();
+
+        mHoverLongFadeOutDelay = (ListPreference) prefSet.findPreference(PREF_HOVER_LONG_FADE_OUT_DELAY);
+        int hoverLongFadeOutDelay = Settings.System.getIntForUser(getContentResolver(),
+                Settings.System.HOVER_LONG_FADE_OUT_DELAY, 5000, UserHandle.USER_CURRENT);
+        mHoverLongFadeOutDelay.setValue(String.valueOf(hoverLongFadeOutDelay));
+        mHoverLongFadeOutDelay.setSummary(mHoverLongFadeOutDelay.getEntry());
+        mHoverLongFadeOutDelay.setOnPreferenceChangeListener(this);
 
         mHoverExcludeNonClearable = (CheckBoxPreference) findPreference(PREF_HOVER_EXCLUDE_NON_CLEARABLE);
         mHoverExcludeNonClearable.setChecked(Settings.System.getIntForUser(getContentResolver(),
@@ -87,6 +101,16 @@ public class  NavigationSettings extends SettingsPreferenceFragment
         mHoverExcludeNonLowPriority.setChecked(Settings.System.getIntForUser(getContentResolver(),
                 Settings.System.HOVER_EXCLUDE_LOW_PRIORITY, 0, UserHandle.USER_CURRENT) == 1);
         mHoverExcludeNonLowPriority.setOnPreferenceChangeListener(this);
+
+        mHoverExcludeTopmost = (CheckBoxPreference) findPreference(PREF_HOVER_EXCLUDE_TOPMOST);
+        mHoverExcludeTopmost.setChecked(Settings.System.getIntForUser(getContentResolver(),
+                Settings.System.HOVER_EXCLUDE_TOPMOST, 0, UserHandle.USER_CURRENT) == 1);
+        mHoverExcludeTopmost.setOnPreferenceChangeListener(this);
+
+        mHoverExcludeFromInsecureLockScreen = (CheckBoxPreference) findPreference(PREF_HOVER_EXCLUDE_FROM_INSECURE_LOCK_SCREEN);
+        mHoverExcludeFromInsecureLockScreen.setChecked(Settings.System.getIntForUser(getContentResolver(),
+                Settings.System.HOVER_EXCLUDE_FROM_INSECURE_LOCK_SCREEN, 0, UserHandle.USER_CURRENT) == 1);
+        mHoverExcludeFromInsecureLockScreen.setOnPreferenceChangeListener(this);
 
         mNotificationPeek = (CheckBoxPreference) findPreference(KEY_PEEK);
         mNotificationPeek.setPersistent(false);   
@@ -115,7 +139,15 @@ public class  NavigationSettings extends SettingsPreferenceFragment
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object objValue) {
-        if (preference == mHoverExcludeNonClearable) {
+        if (preference == mHoverLongFadeOutDelay) {
+            int index = mHoverLongFadeOutDelay.findIndexOfValue((String) objValue);
+            int hoverLongFadeOutDelay = Integer.valueOf((String) objValue);
+            Settings.System.putIntForUser(getContentResolver(),
+                Settings.System.HOVER_LONG_FADE_OUT_DELAY,
+                    hoverLongFadeOutDelay, UserHandle.USER_CURRENT);
+            mHoverLongFadeOutDelay.setSummary(mHoverLongFadeOutDelay.getEntries()[index]);
+            return true;
+        } else if (preference == mHoverExcludeNonClearable) {
             Settings.System.putIntForUser(getContentResolver(),
                     Settings.System.HOVER_EXCLUDE_NON_CLEARABLE,
                     (Boolean) objValue ? 1 : 0, UserHandle.USER_CURRENT);
@@ -123,6 +155,16 @@ public class  NavigationSettings extends SettingsPreferenceFragment
         } else if (preference == mHoverExcludeNonLowPriority) {
             Settings.System.putIntForUser(getContentResolver(),
                     Settings.System.HOVER_EXCLUDE_LOW_PRIORITY,
+                    (Boolean) objValue ? 1 : 0, UserHandle.USER_CURRENT);
+            return true;
+        } else if (preference == mHoverExcludeTopmost) {
+            Settings.System.putIntForUser(getContentResolver(),
+                    Settings.System.HOVER_EXCLUDE_TOPMOST,
+                    (Boolean) objValue ? 1 : 0, UserHandle.USER_CURRENT);
+            return true;
+        } else if (preference == mHoverExcludeFromInsecureLockScreen) {
+            Settings.System.putIntForUser(getContentResolver(),
+                    Settings.System.HOVER_EXCLUDE_FROM_INSECURE_LOCK_SCREEN,
                     (Boolean) objValue ? 1 : 0, UserHandle.USER_CURRENT);
             return true;
         }
