@@ -15,7 +15,6 @@
      limitations under the License.
 -->
 <resources>
-
     <!-- Phone blacklist management -->
     <string-array name="blacklist_policy_unknown_entries" translatable="false">
         <item>@string/blacklist_policy_block_calls</item>
