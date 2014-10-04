@@ -21,4 +21,9 @@
             android:entryValues="@array/quick_pulldown_values"
             android:persistent="false" />
 
+        <PreferenceScreen
+            android:fragment="com.android.settings.slim.BatteryIconStyle"
+            android:key="battery_style_pref"
+            android:title="@string/battery_icon_title" />
+
 </PreferenceScreen>
