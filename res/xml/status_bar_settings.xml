@@ -2,17 +2,21 @@
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:title="@string/display_settings">
-	
 
-        <Preference
-            android:key="heads_up_enabled"
-            android:fragment="com.android.settings.headsup.HeadsUpSettings"
-            android:title="@string/category_heads_up" />
+       <PreferenceScreen
+            android:fragment="com.android.settings.slim.BatteryIconStyle"
+            android:key="battery_style_pref"
+            android:title="@string/battery_icon_title" />
 
        <PreferenceScreen
             android:fragment="com.android.settings.purity.StatusBarClockStyle"
             android:key="clock_style_pref"
             android:title="@string/status_bar_clock" />
+
+        <Preference
+            android:key="heads_up_enabled"
+            android:fragment="com.android.settings.headsup.HeadsUpSettings"
+            android:title="@string/category_heads_up" />
 
         <ListPreference
             android:key="quick_pulldown"
@@ -20,10 +24,5 @@
             android:entries="@array/quick_pulldown_entries"
             android:entryValues="@array/quick_pulldown_values"
             android:persistent="false" />
-
-        <PreferenceScreen
-            android:fragment="com.android.settings.slim.BatteryIconStyle"
-            android:key="battery_style_pref"
-            android:title="@string/battery_icon_title" />
 
 </PreferenceScreen>
