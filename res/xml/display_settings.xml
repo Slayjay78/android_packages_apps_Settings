@@ -110,8 +110,7 @@
 
             <CheckBoxPreference
                 android:key="pref_volume_wake"
-                android:title="@string/pref_volume_wake_title"
-                android:summary="@string/pref_volume_wake_summary" />
+                android:title="@string/pref_volume_wake_title" />
 				
 			<PreferenceScreen
                 android:key="plug_in_prompt_settings"

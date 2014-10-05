@@ -41,7 +41,6 @@ OnPreferenceChangeListener {
         } else {
             String direction = res.getString(value == 2
                     ? R.string.quick_pulldown_summary_left : R.string.quick_pulldown_summary_right);
-            mQuickPulldown.setSummary(res.getString(R.string.quick_pulldown_summary, direction));
         }
     }
 

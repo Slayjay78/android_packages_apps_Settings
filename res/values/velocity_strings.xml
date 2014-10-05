@@ -1,33 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <!-- About phone screen, build date of ROM -->
+        <!-- About phone screen, build date of ROM -->
     <string name="build_date">Velocity build date</string>
 
     <string name="build_date_default">2012-01-01-0000</string>
 	
-	<string name="ok">OK</string>
-	<string name="reset">Reset</string>
-        <string name="default_string">Default</string>
+    <string name="ok">OK</string>
+    <string name="reset">Reset</string>
+    <string name="default_string">Default</string>
 	
 	<!-- Wakeup options -->
     <string name="display_category_wakeup_options_title">Wakeup options</string>
     <string name="pref_volume_wake_title">Volume rocker wake</string>
-    <string name="pref_volume_wake_summary">Pressing the volume rocker up/down will wake the device</string>
 
-    <!-- Volume rocker music control -->
+        <!-- Volume rocker music control -->
     <string name="volbtn_music_controls_title">Volume rocker music controls</string>
-    <string name="volbtn_music_controls_summary">When screen off, long-pressing the volume rockers will seek music tracks</string>
     
-    <!-- Volume Adjust sound -->
+        <!-- Volume Adjust sound -->
     <string name="volume_adjust_sounds_enable_title">Volume adjustment sound</string>
-    <string name="volume_adjust_sounds_enable_summary">Play sound when adjusting volume with volume rocker</string>
     
-    <!-- Sound settings screen, volumes -->
+        <!-- Sound settings screen, volumes -->
     <string name="link_volume_ringtones">Link ringtone &amp; notifications volumes</string>
     <string name="link_volume_mutes">Silent mode affects notifications</string>
 
-    <!-- Sound settings screen -->
+        <!-- Sound settings screen -->
     <string name="volume_overlay_title">Volume panel style</string>
     <string name="volume_ring_only_description">Ringtone</string>
 	
@@ -48,7 +45,7 @@
     <string name="notification_light_choose_app">Choose application</string>
     <string name="notification_light_add">Add</string>
 
-    <!-- Notification light dialogs -->
+        <!-- Notification light dialogs -->
     <string name="edit_light_settings">Edit light settings</string>
     <string name="pulse_speed_title">Pulse length and speed</string>
     <string name="picker_arrow">→</string>
@@ -60,7 +57,7 @@
     <string name="dialog_test_message">Turn the screen off to see the selected notification in action or dismiss this dialog to stop the test</string>
     <string name="dialog_test_button">Dismiss</string>
 
-    <!-- Values for the notification light pulse spinners -->
+        <!-- Values for the notification light pulse spinners -->
     <string name="pulse_length_always_on">Always on</string>
     <string name="pulse_length_very_short">Very short</string>
     <string name="pulse_length_short">Short</string>
@@ -73,7 +70,7 @@
     <string name="pulse_speed_slow">Slow</string>
     <string name="pulse_speed_very_slow">Very slow</string>
 
-    <!-- Battery light settings -->
+        <!-- Battery light settings -->
     <string name="battery_reset_title">Reset</string>
     <string name="battery_light_title">Battery light</string>
     <string name="battery_low_pulse_title">Pulse if battery low</string>
@@ -85,9 +82,8 @@
 	<!--  Plug-in prompt -->
     <string name="plug_in_prompt_settings_title">Plug-in prompt</string>
 
-    <!-- Turn on display when power connected; turn off display when power disconnected -->
+        <!-- Turn on display when power connected; turn off display when power disconnected -->
     <string name="wake_when_plugged_or_unplugged_title">Wake on plug</string>
-    <string name="wake_when_plugged_or_unplugged_summary">Turn the screen on when plugged/unplugged</string>
 	
 	<!-- Powermenu Options -->
     <string name="powermenu_title">Power menu</string>
@@ -107,7 +103,7 @@
     <string name="powermenu_userswitch_prefs_summary">%1$s</string>
     <string name="powermenu_screenshot_prefs_title">Screenshot</string>
     <string name="powermenu_screenshot_prefs_summary">%1$s</string>
-	<string name="powermenu_torch_prefs_title">Torch</string>
+    <string name="powermenu_torch_prefs_title">Torch</string>
     <string name="powermenu_torch_prefs_summary">%1$s</string>
     <string name="power_menu_immersive_mode">Immersive mode</string>
     <string name="summary_immersive_mode">%1$s</string>
@@ -152,7 +148,7 @@
 	<string name="display_category_navigation_bar_title">Navigation bar</string>
     <string name="navigation_bar_title">Navigation bar</string>
 
-    <!-- Navigation Bar Height -->
+        <!-- Navigation Bar Height -->
     <string name="navigation_bar_height">Navigation bar height</string>
     <string name="navigation_bar_height_48">48dp (default)</string>
     <string name="navigation_bar_height_44">44dp</string>
@@ -176,10 +172,10 @@
 	
 	<!-- Status bar  -->
     <string name="status_bar_title">Status bar</string>
-	<string name="display_category_status_bar_title">Status bar</string>
-    <!-- Quick settings -->
+    <string name="display_category_status_bar_title">Status bar</string>
+
+        <!-- Quick settings -->
     <string name="quick_pulldown_title">Quick pulldown</string>
-    <string name="quick_pulldown_summary">%1$s edge of the status bar pulls down Quick Settings</string>
     <string name="quick_pulldown_summary_left">Left</string>
     <string name="quick_pulldown_summary_right">Right</string>
     <string name="quick_pulldown_off">Off</string>
@@ -196,7 +192,7 @@
     <string name="set">Set</string>
     <string name="color_default">Default</string>
 
-    <!-- Status bar | Clock -->
+        <!-- Status bar | Clock -->
     <string name="status_bar_clock">Clock and date</string>
     <string name="status_bar_clock_title">Clock and date style</string>
     <string name="clock_title_enable">Alignment</string>
@@ -230,14 +226,14 @@
     <string name="clock_date_format_custom">Custom java format</string>
     <string name="status_bar_clock_style_reset_message">Reset clock color?</string>
 
-    <!-- Developer options - kill app long press back -->
+        <!-- Developer options - kill app long press back -->
     <string name="kill_app_longpress_back">Kill app back button</string>
     <string name="kill_app_longpress_back_summary">Kill the foreground app by long-pressing the back key</string>
 
-    <!--AppOps-->
+        <!--AppOps-->
     <string name="appops_settings_title">App privacy</string>
 
-    <!-- Heads Up -->
+        <!-- Heads Up -->
     <string name="category_heads_up">Heads up</string>
     <string name="summary_heads_up_enabled">Pop-up notifications are enabled</string>
     <string name="summary_heads_up_disabled">Pop-up notifications are disabled</string>
@@ -248,10 +244,10 @@
     <string name="heads_up_blacklist_title">Blacklist</string>
     <string name="heads_up_disabled_notice">To allow applications to display interactive notifications in a pop-up window on your screen, enable Heads up.</string>
 
-    <!-- Add application dialog box title -->
+        <!-- Add application dialog box title -->
     <string name="profile_choose_app">Choose application</string>
 
-    <!-- StatusBar Battery Settings -->
+        <!-- StatusBar Battery Settings -->
     <string name="battery_icon_title">Battery icon</string>
     <string name="battery_status_icon">Icon</string>
     <string name="battery_status_percentage">Percentage</string>
