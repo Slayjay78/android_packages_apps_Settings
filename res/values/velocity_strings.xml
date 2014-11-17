@@ -148,4 +148,10 @@
     <string name="status_bar_prefs_title">Status bar</string>
     <string name="keywords_status_bar">status bar drawer icons</string>
 
+    <!-- Expanded Desktop -->
+    <string name="expanded_desktop_style">Expanded desktop style</string>
+    <string name="expanded_desktop_disabled">Disabled</string>
+    <string name="expanded_desktop_status_bar">Status bar visible</string>
+    <string name="expanded_desktop_no_status_bar">Status bar hidden</string>
+    <string name="power_menu_expanded_desktop">Expanded desktop</string>
 </resources>
