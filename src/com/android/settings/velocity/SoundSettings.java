@@ -39,10 +39,12 @@ public class SoundSettings extends SettingsPreferenceFragment implements
 
     private static final int DLG_SAFE_HEADSET_VOLUME = 0;
 
+    private static final String VOLUME_KEY_ADJUST_SOUND = "volume_key_adjust_sound";
     private static final String KEY_SAFE_HEADSET_VOLUME = "safe_headset_volume";
     private static final String PREF_LESS_NOTIFICATION_SOUNDS = "less_notification_sounds";
     private static final String KEY_VOL_MEDIA = "volume_keys_control_media_stream";
 
+    private SwitchPreference mVolumeKeyAdjustSound;
     private SwitchPreference mSafeHeadsetVolume;
     private ListPreference mAnnoyingNotifications;
     private SwitchPreference mVolumeKeysControlMedia;
@@ -53,6 +55,10 @@ public class SoundSettings extends SettingsPreferenceFragment implements
 
         addPreferencesFromResource(R.xml.velocity_sound_settings);
 
+        mVolumeKeyAdjustSound = (SwitchPreference) findPreference(VOLUME_KEY_ADJUST_SOUND);
+        mVolumeKeyAdjustSound.setOnPreferenceChangeListener(this);
+        mVolumeKeyAdjustSound.setChecked(Settings.System.getInt(getContentResolver(),
+                VOLUME_KEY_ADJUST_SOUND, 1) != 0);
         mSafeHeadsetVolume = (SwitchPreference) findPreference(KEY_SAFE_HEADSET_VOLUME);
         mSafeHeadsetVolume.setChecked(Settings.System.getInt(getContentResolver(),
                 Settings.System.SAFE_HEADSET_VOLUME, 1) != 0);
@@ -96,6 +102,11 @@ public class SoundSettings extends SettingsPreferenceFragment implements
             final int val = Integer.valueOf((String) objValue);
             Settings.System.putInt(getContentResolver(),
                     Settings.System.MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD, val);
+        }
+        if (VOLUME_KEY_ADJUST_SOUND.equals(key)) {
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.VOLUME_KEY_ADJUST_SOUND,
+                    (Boolean) objValue ? 1 : 0);
         }
         if (KEY_VOL_MEDIA.equals(key)) {
             Settings.System.putInt(getContentResolver(),

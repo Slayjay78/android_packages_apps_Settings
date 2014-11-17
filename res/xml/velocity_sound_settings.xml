@@ -20,6 +20,11 @@
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
     <SwitchPreference
+        android:key="volume_key_adjust_sound"
+        android:title="@string/volume_key_adjust_sound_title"
+        android:summary="@string/volume_key_adjust_sound_summary" />
+
+    <SwitchPreference
         android:key="safe_headset_volume"
         android:title="@string/safe_headset_volume_title"
         android:summary="@string/safe_headset_volume_summary"
