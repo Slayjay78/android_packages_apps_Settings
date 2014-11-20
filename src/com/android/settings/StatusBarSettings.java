@@ -19,13 +19,13 @@ package com.android.settings;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
-import android.preference.CheckBoxPreference;
+import android.preference.SwitchPreference;
 import android.provider.Settings;
 
 public class StatusBarSettings extends SettingsPreferenceFragment
         implements OnSharedPreferenceChangeListener {
 
-    private CheckBoxPreference mShowBatteryPercentage;
+    private SwitchPreference mShowBatteryPercentage;
     private static final String KEY_SHOW_BATTERY_PERCENTAGE = "show_battery_percent";
 
     @Override
@@ -36,7 +36,7 @@ public class StatusBarSettings extends SettingsPreferenceFragment
     }
 
     private void initUI() {
-        mShowBatteryPercentage = (CheckBoxPreference) findPreference(KEY_SHOW_BATTERY_PERCENTAGE);
+        mShowBatteryPercentage = (SwitchPreference) findPreference(KEY_SHOW_BATTERY_PERCENTAGE);
         boolean showPercentage = Settings.System.getInt(
             getContentResolver(), "status_bar_show_battery_percent", 0) > 0;
         mShowBatteryPercentage.setChecked(showPercentage);

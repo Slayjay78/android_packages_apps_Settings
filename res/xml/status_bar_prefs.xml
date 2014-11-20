@@ -19,7 +19,13 @@
         android:title="@string/status_bar_prefs_title"
         settings:keywords="@string/keywords_status_bar">
 
-    <CheckBoxPreference android:key="show_battery_percent"
+
+    <PreferenceScreen
+        android:fragment="com.android.settings.velocity.StatusBarClockStyle"
+        android:key="clock_style_pref"
+        android:title="@string/status_bar_clock" />
+
+    <SwitchPreference android:key="show_battery_percent"
         android:title="@string/show_battery_percent_title" />
 
 </PreferenceScreen>
