@@ -16,6 +16,8 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
  
+    <string name="app_security_title">App security</string>
+
     <!-- Blacklist preferences -->
     <string name="blacklist_title">Blacklist</string>
     <string name="blacklist_edit_dialog_title">Edit blacklist entry</string>
