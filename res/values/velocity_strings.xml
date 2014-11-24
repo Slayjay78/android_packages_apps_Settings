@@ -294,4 +294,8 @@
     <string name="double_tap_to_sleep_title">Double-tap to sleep</string>	
     <string name="double_tap_to_sleep_summary">Double tap status bar or lock screen slider to put the device to sleep</string>
 
+    <string name="app_notification_show_on_keyguard_title">Show on lockscreen</string>
+    <string name="app_notification_show_on_keyguard_summary">Show notifications from this app on the lockscreen</string>
+    <string name="app_notification_no_ongoing_on_keyguard_title">Disable ongoing on lockscreen</string>
+    <string name="app_notification_no_ongoing_on_keyguard_summary">Never show ongoing notifications from this app on the lockscreen</string>
 </resources>
