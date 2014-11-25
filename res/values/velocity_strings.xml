@@ -286,4 +286,12 @@
     <string name="toggleWimax">WiMAX</string>
     <string name="toggleNfc">NFC</string>
 
+    <!-- Quick pulldown -->
+    <string name="status_bar_quick_qs_pulldown_title">Quick pulldown</string>	
+    <string name="status_bar_quick_qs_pulldown_summary">Right edge of the status bar pulls down Quick Settings</string>
+
+    <!-- tap-to-sleep -->	
+    <string name="double_tap_to_sleep_title">Double-tap to sleep</string>	
+    <string name="double_tap_to_sleep_summary">Double tap status bar or lock screen slider to put the device to sleep</string>
+
 </resources>
