@@ -17,7 +17,7 @@
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-   <!-- <PreferenceCategory
+    <PreferenceCategory
         android:key="app_security"
         android:title="@string/app_security_title">
 
@@ -26,6 +26,6 @@
             android:title="@string/blacklist_title"
             android:fragment="com.android.settings.blacklist.BlacklistSettings" />
 
-    </PreferenceCategory> -->
+    </PreferenceCategory>
 
 </PreferenceScreen>
