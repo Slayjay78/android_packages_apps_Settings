@@ -154,6 +154,7 @@
 
     <!-- Status bar Settings -->
     <string name="show_battery_percent_title">Show battery percentage</string>
+    <string name="status_bar_show_battery_percent_summary">Show battery status percent</string>
     <string name="status_bar_prefs_title">Status bar</string>
     <string name="keywords_status_bar">status bar drawer icons</string>
 
@@ -312,4 +313,11 @@
     <string name="recents_clear_all_location_title">Clear all recents location</string>
     <string name="recents_clear_all_location_right">Top right</string>
     <string name="recents_clear_all_location_left">Top left</string>
+
+    <!-- QuickSettings: Quick Pulldown -->
+    <string name="title_quick_pulldown">Quick pulldown</string>
+    <string name="summary_quick_pulldown">%1$s edge of the status bar pulls down Quick Settings</string>
+    <string name="quick_pulldown_off">Off</string>
+    <string name="quick_pulldown_left">Left</string>
+    <string name="quick_pulldown_right">Right</string>
 </resources>

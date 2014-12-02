@@ -16,50 +16,85 @@
 
 package com.android.settings;
 
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
+import android.os.UserHandle;
+import android.content.ContentResolver;
+import android.content.res.Resources;
+import android.preference.ListPreference;
+import android.preference.Preference;
+import android.preference.Preference.OnPreferenceChangeListener;
+import android.preference.PreferenceCategory;
+import android.preference.PreferenceScreen;
 import android.preference.SwitchPreference;
 import android.provider.Settings;
+import android.text.TextUtils;
+import android.view.View;
+
+import com.android.internal.util.velocity.DeviceUtils;
+
+import com.android.settings.SettingsPreferenceFragment;
+import com.android.settings.R;
+
+import java.util.Locale;
 
 public class StatusBarSettings extends SettingsPreferenceFragment
-        implements OnSharedPreferenceChangeListener {
+        implements OnPreferenceChangeListener {
 
-    private SwitchPreference mShowBatteryPercentage;
-    private static final String KEY_SHOW_BATTERY_PERCENTAGE = "show_battery_percent";
+    private static final String PRE_QUICK_PULLDOWN = "quick_pulldown";
+
+    private ListPreference mQuickPulldown;
 
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         addPreferencesFromResource(R.xml.status_bar_prefs);
-        initUI();
-    }
 
-    private void initUI() {
-        mShowBatteryPercentage = (SwitchPreference) findPreference(KEY_SHOW_BATTERY_PERCENTAGE);
-        boolean showPercentage = Settings.System.getInt(
-            getContentResolver(), "status_bar_show_battery_percent", 0) > 0;
-        mShowBatteryPercentage.setChecked(showPercentage);
+        PreferenceScreen prefSet = getPreferenceScreen();
+        ContentResolver resolver = getActivity().getContentResolver();
+
+        mQuickPulldown = (ListPreference) findPreference(PRE_QUICK_PULLDOWN);
+        if (!DeviceUtils.isPhone(getActivity())) {
+            prefSet.removePreference(mQuickPulldown);
+        } else {
+            // Quick Pulldown
+            mQuickPulldown.setOnPreferenceChangeListener(this);
+            int statusQuickPulldown = Settings.System.getInt(getContentResolver(),
+                    Settings.System.STATUS_BAR_QUICK_QS_PULLDOWN, 1);
+            mQuickPulldown.setValue(String.valueOf(statusQuickPulldown));
+            updateQuickPulldownSummary(statusQuickPulldown);
+        }
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        getPreferenceScreen().getSharedPreferences()
-                             .registerOnSharedPreferenceChangeListener(this);
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
+    public boolean onPreferenceChange(Preference preference, Object objValue) {
+        if (preference == mQuickPulldown) {
+            int statusQuickPulldown = Integer.valueOf((String) objValue);
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.STATUS_BAR_QUICK_QS_PULLDOWN,
+                    statusQuickPulldown);
+            updateQuickPulldownSummary(statusQuickPulldown);
+            return true;
+        }
+        return false;
     }
 
-    @Override
-    public void onSharedPreferenceChanged(SharedPreferences preferences, String key) {
-        if (key.equals(KEY_SHOW_BATTERY_PERCENTAGE)) {
-            boolean showPercentage = preferences.getBoolean(key, true);
-            Settings.System.putInt(getContentResolver(), "status_bar_show_battery_percent",
-                                   showPercentage ? 1 : 0);
+    private void updateQuickPulldownSummary(int value) {
+        Resources res = getResources();
+
+        if (value == 0) {
+            // quick pulldown deactivated
+            mQuickPulldown.setSummary(res.getString(R.string.quick_pulldown_off));
+        } else {
+            Locale l = Locale.getDefault();
+            boolean isRtl = TextUtils.getLayoutDirectionFromLocale(l) == View.LAYOUT_DIRECTION_RTL;
+            String direction = res.getString(value == 2
+                    ? (isRtl ? R.string.quick_pulldown_right : R.string.quick_pulldown_left)
+                    : (isRtl ? R.string.quick_pulldown_left : R.string.quick_pulldown_right));
+            mQuickPulldown.setSummary(res.getString(R.string.summary_quick_pulldown, direction));
         }
     }
 }
