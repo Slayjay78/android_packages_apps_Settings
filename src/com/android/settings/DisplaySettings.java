@@ -101,7 +101,6 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
 
     private PreferenceScreen mDisplayRotationPreference;
 
-    private WarnedListPreference mFontSizePref;
     private SwitchPreference mWakeUpWhenPluggedOrUnplugged;
     private PreferenceCategory mWakeUpOptions;
     private FontDialogPreference mFontSizePref;
