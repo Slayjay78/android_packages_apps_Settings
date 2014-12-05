@@ -2075,5 +2075,14 @@
             </intent-filter>
         </provider>
 
+        <!-- Ad blocker -->
+        <receiver android:name="com.android.settings.crdroid.hfm.IntentReceiver" >
+            <intent-filter>
+                 <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <service android:name="com.android.settings.crdroid.hfm.CheckHosts" />
+
     </application>
 </manifest>
