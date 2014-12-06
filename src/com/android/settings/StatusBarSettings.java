@@ -43,7 +43,9 @@ public class StatusBarSettings extends SettingsPreferenceFragment
 
     private static final String PREF_QUICK_PULLDOWN = "quick_pulldown";
     private static final String PREF_BLOCK_ON_SECURE_KEYGUARD = "block_on_secure_keyguard";
+    private static final String KEY_STATUS_BAR_CLOCK = "clock_style_pref";
 
+    private PreferenceScreen mClockStyle;
     private ListPreference mQuickPulldown;
     private SwitchPreference mBlockOnSecureKeyguard;
 
@@ -54,6 +56,9 @@ public class StatusBarSettings extends SettingsPreferenceFragment
 
         PreferenceScreen prefSet = getPreferenceScreen();
         ContentResolver resolver = getActivity().getContentResolver();
+
+        mClockStyle = (PreferenceScreen) prefSet.findPreference(KEY_STATUS_BAR_CLOCK);
+        updateClockStyleDescription();
 
         mQuickPulldown = (ListPreference) findPreference(PREF_QUICK_PULLDOWN);
         if (!DeviceUtils.isPhone(getActivity())) {
@@ -81,6 +86,7 @@ public class StatusBarSettings extends SettingsPreferenceFragment
     @Override
     public void onResume() {
         super.onResume();
+        updateClockStyleDescription();
     }
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {
@@ -113,6 +119,18 @@ public class StatusBarSettings extends SettingsPreferenceFragment
                     ? (isRtl ? R.string.quick_pulldown_right : R.string.quick_pulldown_left)
                     : (isRtl ? R.string.quick_pulldown_left : R.string.quick_pulldown_right));
             mQuickPulldown.setSummary(res.getString(R.string.summary_quick_pulldown, direction));
+        }
+    }
+
+    private void updateClockStyleDescription() {
+        if (mClockStyle == null) {
+            return;
+        }
+        if (Settings.System.getInt(getContentResolver(),
+               Settings.System.STATUS_BAR_CLOCK, 1) == 1) {
+            mClockStyle.setSummary(getString(R.string.enabled_string));
+        } else {
+            mClockStyle.setSummary(getString(R.string.disabled));
         }
     }
 }
