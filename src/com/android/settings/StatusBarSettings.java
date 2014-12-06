@@ -19,6 +19,7 @@ package com.android.settings;
 import android.os.Bundle;
 import android.os.UserHandle;
 import android.content.ContentResolver;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -35,15 +36,19 @@ import com.android.internal.widget.LockPatternUtils;
 
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.R;
+import com.android.settings.util.Helpers;
 
 import java.util.Locale;
 
 public class StatusBarSettings extends SettingsPreferenceFragment
         implements OnPreferenceChangeListener {
 
+    private static final String KEY_LOCKCLOCK = "lock_clock";
+    public static final String LOCKCLOCK_PACKAGE_NAME = "com.cyanogenmod.lockclock";
     private static final String PREF_QUICK_PULLDOWN = "quick_pulldown";
     private static final String PREF_BLOCK_ON_SECURE_KEYGUARD = "block_on_secure_keyguard";
 
+    private Preference mLockClock;
     private ListPreference mQuickPulldown;
     private SwitchPreference mBlockOnSecureKeyguard;
 
@@ -54,6 +59,13 @@ public class StatusBarSettings extends SettingsPreferenceFragment
 
         PreferenceScreen prefSet = getPreferenceScreen();
         ContentResolver resolver = getActivity().getContentResolver();
+        PackageManager pm = getPackageManager();
+
+        mLockClock = (Preference) getPreferenceScreen()
+                .findPreference(KEY_LOCKCLOCK);
+        if (!Helpers.isPackageInstalled(LOCKCLOCK_PACKAGE_NAME, pm)) {
+            getPreferenceScreen().removePreference(mLockClock);
+        }
 
         mQuickPulldown = (ListPreference) findPreference(PREF_QUICK_PULLDOWN);
         if (!DeviceUtils.isPhone(getActivity())) {

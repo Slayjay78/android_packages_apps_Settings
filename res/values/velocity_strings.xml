@@ -358,4 +358,13 @@
 
     <string name="profile_setup_setup_triggers_description">Please select triggers which will activate this profile</string>
     <string name="profile_setup_actions_description">Now configure what happens when the profile is activated</string>
+
+    <string name="status_bar_show_weather_title">Show weather</string>	
+    <string name="status_bar_show_weather_summary">Show the weather in the status bar header</string>
+
+    <!-- LockClock and Weather -->
+    <string name="clock_weather_title">LockClock and weather settings</string>
+    <string name="clock_weather_summary">Enable/disable weather + settings for cLock widget</string>
+    <string name="lock_clock_title">cLock settings</string>
+    <string name="lock_clock_summary">View or change how the \'cLock\' widget will be displayed.</string>
 </resources>
