@@ -29,6 +29,7 @@ import android.preference.PreferenceScreen;
 import android.preference.SwitchPreference;
 import android.provider.Settings;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 
 import com.android.internal.util.velocity.DeviceUtils;
@@ -43,16 +44,20 @@ import java.util.Locale;
 public class StatusBarSettings extends SettingsPreferenceFragment
         implements OnPreferenceChangeListener {
 
+    private static final String TAG = "StatusBarSettings";
+
     private static final String KEY_LOCKCLOCK = "lock_clock";
     public static final String LOCKCLOCK_PACKAGE_NAME = "com.cyanogenmod.lockclock";
     private static final String PREF_QUICK_PULLDOWN = "quick_pulldown";
     private static final String PREF_BLOCK_ON_SECURE_KEYGUARD = "block_on_secure_keyguard";
     private static final String PREF_SMART_PULLDOWN = "smart_pulldown";
+    private static final String KEY_STATUS_BAR_TICKER = "status_bar_ticker_enabled";
 
     private Preference mLockClock;
     private ListPreference mQuickPulldown;
     private ListPreference mSmartPulldown;
     private SwitchPreference mBlockOnSecureKeyguard;
+    private SwitchPreference mTicker;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -62,6 +67,20 @@ public class StatusBarSettings extends SettingsPreferenceFragment
         PreferenceScreen prefSet = getPreferenceScreen();
         ContentResolver resolver = getActivity().getContentResolver();
         PackageManager pm = getPackageManager();
+        Resources systemUiResources;
+        try {
+            systemUiResources = pm.getResourcesForApplication("com.android.systemui");
+        } catch (Exception e) {
+            Log.e(TAG, "can't access systemui resources",e);
+            return;
+        }
+
+        mTicker = (SwitchPreference) prefSet.findPreference(KEY_STATUS_BAR_TICKER);
+        final boolean tickerEnabled = systemUiResources.getBoolean(systemUiResources.getIdentifier(
+                    "com.android.systemui:bool/enable_ticker", null, null));
+        mTicker.setChecked(Settings.System.getInt(getContentResolver(),
+                Settings.System.STATUS_BAR_TICKER_ENABLED, tickerEnabled ? 1 : 0) == 1);
+        mTicker.setOnPreferenceChangeListener(this);
 
         mLockClock = (Preference) getPreferenceScreen()
                 .findPreference(KEY_LOCKCLOCK);
@@ -124,6 +143,11 @@ public class StatusBarSettings extends SettingsPreferenceFragment
         } else if (preference == mBlockOnSecureKeyguard) {
             Settings.Secure.putInt(getContentResolver(),
                     Settings.Secure.STATUS_BAR_LOCKED_ON_SECURE_KEYGUARD,
+                    (Boolean) objValue ? 1 : 0);
+            return true;
+        } else if (preference == mTicker) {
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.STATUS_BAR_TICKER_ENABLED,
                     (Boolean) objValue ? 1 : 0);
             return true;
         }
