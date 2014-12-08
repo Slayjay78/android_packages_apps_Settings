@@ -47,9 +47,11 @@ public class StatusBarSettings extends SettingsPreferenceFragment
     public static final String LOCKCLOCK_PACKAGE_NAME = "com.cyanogenmod.lockclock";
     private static final String PREF_QUICK_PULLDOWN = "quick_pulldown";
     private static final String PREF_BLOCK_ON_SECURE_KEYGUARD = "block_on_secure_keyguard";
+    private static final String PREF_SMART_PULLDOWN = "smart_pulldown";
 
     private Preference mLockClock;
     private ListPreference mQuickPulldown;
+    private ListPreference mSmartPulldown;
     private SwitchPreference mBlockOnSecureKeyguard;
 
     @Override
@@ -68,8 +70,10 @@ public class StatusBarSettings extends SettingsPreferenceFragment
         }
 
         mQuickPulldown = (ListPreference) findPreference(PREF_QUICK_PULLDOWN);
+        mSmartPulldown = (ListPreference) findPreference(PREF_SMART_PULLDOWN);
         if (!DeviceUtils.isPhone(getActivity())) {
             prefSet.removePreference(mQuickPulldown);
+            prefSet.removePreference(mSmartPulldown);
         } else {
             // Quick Pulldown
             mQuickPulldown.setOnPreferenceChangeListener(this);
@@ -77,6 +81,13 @@ public class StatusBarSettings extends SettingsPreferenceFragment
                     Settings.System.STATUS_BAR_QUICK_QS_PULLDOWN, 1);
             mQuickPulldown.setValue(String.valueOf(statusQuickPulldown));
             updateQuickPulldownSummary(statusQuickPulldown);
+
+            // Smart Pulldown
+            mSmartPulldown.setOnPreferenceChangeListener(this);
+            int smartPulldown = Settings.System.getInt(getContentResolver(),
+                    Settings.System.QS_SMART_PULLDOWN, 0);
+            mSmartPulldown.setValue(String.valueOf(smartPulldown));
+            updateSmartPulldownSummary(smartPulldown);
         }
 
         final LockPatternUtils lockPatternUtils = new LockPatternUtils(getActivity());
@@ -110,6 +121,31 @@ public class StatusBarSettings extends SettingsPreferenceFragment
             return true;
         }
         return false;
+    }
+
+    private void updateSmartPulldownSummary(int value) {
+        Resources res = getResources();
+
+        if (value == 0) {
+            // Smart pulldown deactivated
+            mSmartPulldown.setSummary(res.getString(R.string.smart_pulldown_off));
+        } else {
+            String type = null;
+            switch (value) {
+                case 1:
+                    type = res.getString(R.string.smart_pulldown_dismissable);
+                    break;
+                case 2:
+                    type = res.getString(R.string.smart_pulldown_persistent);
+                    break;
+                default:
+                    type = res.getString(R.string.smart_pulldown_all);
+                    break;
+            }
+            // Remove title capitalized formatting
+            type = type.toLowerCase();
+            mSmartPulldown.setSummary(res.getString(R.string.smart_pulldown_summary, type));
+        }
     }
 
     private void updateQuickPulldownSummary(int value) {
