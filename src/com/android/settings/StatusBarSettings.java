@@ -133,6 +133,13 @@ public class StatusBarSettings extends SettingsPreferenceFragment
                     statusQuickPulldown);
             updateQuickPulldownSummary(statusQuickPulldown);
             return true;
+        } else if (preference == mSmartPulldown) {
+            int smartPulldown = Integer.valueOf((String) objValue);
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.QS_SMART_PULLDOWN,
+                    smartPulldown);
+            updateSmartPulldownSummary(smartPulldown);
+            return true;
         } else if (preference == mBlockOnSecureKeyguard) {
             Settings.Secure.putInt(getContentResolver(),
                     Settings.Secure.STATUS_BAR_LOCKED_ON_SECURE_KEYGUARD,
