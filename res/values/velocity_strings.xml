@@ -20,6 +20,7 @@
     <string name="default_string">Default</string>
     <string name="reset_message">Reset all entries to default?</string>
     <string name="choose_app">Choose application</string>
+    <string name="help">Help</string>
 
     <!-- Navigation Bar -->
     <string name="navigation_bar_title">Navigation bar</string>
