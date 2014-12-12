@@ -156,10 +156,15 @@
     <string name="status_bar_clock_style_reset_message">Reset clock color?</string>
 
     <!-- Status bar Settings -->
-    <string name="show_battery_percent_title">Show battery percentage</string>
-    <string name="status_bar_show_battery_percent_summary">Show battery status percent</string>
     <string name="status_bar_prefs_title">Status bar</string>
     <string name="keywords_status_bar">status bar drawer icons</string>
+
+    <!-- Battery percentage -->
+    <string name="status_bar_battery_percentage_title">Show battery percentage</string>
+    <string name="status_bar_battery_percentage_dialog_title">Battery percentage</string>
+    <string name="status_bar_battery_percentage_default">Hidden (default)</string>
+    <string name="status_bar_battery_percentage_text_inside">Inside the icon</string>
+    <string name="status_bar_battery_percentage_text_next">Next to the icon</string>
 
     <!-- Expanded Desktop -->
     <string name="expanded_desktop_style">Expanded desktop style</string>
