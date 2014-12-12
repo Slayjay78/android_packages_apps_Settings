@@ -28,7 +28,7 @@
     <string name="mod_version">Euphoria-Version</string>
     <string name="mod_version_default">Unbekannt</string>
     <!-- About phone screen, Build date of ROM -->
-    <string name="build_date">Build-Datum</string>
+    <string name="build_date">Velocity Build-Datum</string>
     <string name="build_date_default">2012-01-01-0000</string>
     <!-- About device screen, Cpu info. -->
     <string name="cpu_info">Prozessor</string>
