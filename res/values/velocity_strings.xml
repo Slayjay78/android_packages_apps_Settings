@@ -158,6 +158,9 @@
     <!-- Status bar Settings -->
     <string name="status_bar_prefs_title">Status bar</string>
     <string name="keywords_status_bar">status bar drawer icons</string>
+    <string name="status_bar_general_category">General</string>
+    <string name="status_bar_pulldown_category">Pulldown options</string>
+    <string name="status_bar_style_category">Statusbar style</string>
 
         <!-- Status bar - Battery -->
     <string name="status_bar_battery_style_title">Battery status style</string>
