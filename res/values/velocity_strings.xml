@@ -568,7 +568,7 @@
     <string name="toast_Translucent_animation">Translucent animation</string>
 
     <!-- Display and Animations -->
-    <string name="disp_anim_settings_title">Display and animations</string>
+    <string name="disp_anim_settings_title">Display animations</string>
     
     <!-- ListView animation -->
     <string name="interface_settings_animation_title">Animation options</string>

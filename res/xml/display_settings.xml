@@ -88,7 +88,7 @@
                android:title="@string/toast_animation_title"
                android:entries="@array/toast_animation_entries"
                android:entryValues="@array/toast_animation_values"
-               android:persistent="false" />		
+               android:persistent="false" />
 
        <PreferenceScreen
                android:id="@+id/disp_anim_settings"
