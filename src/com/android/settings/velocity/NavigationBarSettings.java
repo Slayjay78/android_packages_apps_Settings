@@ -19,14 +19,12 @@ import com.android.settings.SettingsPreferenceFragment;
 public class NavigationBarSettings extends SettingsPreferenceFragment implements
 OnPreferenceChangeListener {
 
-    private static final String KEY_NAVIGATION_BAR_HEIGHT = "navigation_bar_height";
     private static final String SHOW_CLEAR_ALL_RECENTS = "show_clear_all_recents";
     private static final String RECENTS_CLEAR_ALL_LOCATION = "recents_clear_all_location";
 
     private SwitchPreference mRecentsClearAll;
     private ListPreference mRecentsClearAllLocation;
 
-    private ListPreference mNavigationBarHeight;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,14 +34,6 @@ OnPreferenceChangeListener {
 
 	PreferenceScreen prefSet = getPreferenceScreen();
 	ContentResolver resolver = getActivity().getContentResolver();
-
-        mNavigationBarHeight = (ListPreference) findPreference(KEY_NAVIGATION_BAR_HEIGHT);
-        mNavigationBarHeight.setOnPreferenceChangeListener(this);
-        int statusNavigationBarHeight = Settings.System.getInt(getActivity().getApplicationContext()
-                .getContentResolver(),
-                Settings.System.NAVIGATION_BAR_HEIGHT, 48);
-        mNavigationBarHeight.setValue(String.valueOf(statusNavigationBarHeight));
-        mNavigationBarHeight.setSummary(mNavigationBarHeight.getEntry());
 
 	mRecentsClearAll = (SwitchPreference) prefSet.findPreference(SHOW_CLEAR_ALL_RECENTS);
         mRecentsClearAll.setChecked(Settings.System.getIntForUser(resolver,
@@ -59,14 +49,7 @@ OnPreferenceChangeListener {
     }
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {
-        if (preference == mNavigationBarHeight) {
-            int statusNavigationBarHeight = Integer.valueOf((String) objValue);
-            int index = mNavigationBarHeight.findIndexOfValue((String) objValue);
-            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
-                    Settings.System.NAVIGATION_BAR_HEIGHT, statusNavigationBarHeight);
-            mNavigationBarHeight.setSummary(mNavigationBarHeight.getEntries()[index]);
-        return true;
-	} else if (preference == mRecentsClearAll) {
+        if (preference == mRecentsClearAll) {
             boolean show = (Boolean) objValue;
             Settings.System.putIntForUser(getActivity().getContentResolver(),
                     Settings.System.SHOW_CLEAR_ALL_RECENTS, show ? 1 : 0, UserHandle.USER_CURRENT);
