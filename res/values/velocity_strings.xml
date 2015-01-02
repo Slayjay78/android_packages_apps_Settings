@@ -726,10 +726,14 @@
     <string name="screen_recorder_power_menu_summary">Add a Screen Record entry in the power menu</string>
 
     <!-- Quick Settings -->
-    <string name="quick_settings_screen_title">Quick settings options</string>
+    <string name="quick_settings_screen_title">Quick settings</string>
 
-   <!-- QuickSettings haptic feedback -->
-   <string name="quick_settings_vibrate_title">Vibrate on touch</string>
-   <string name="quick_settings_vibrate_summary">Vibrate when touching tiles</string>
+    <!-- QuickSettings haptic feedback -->
+    <string name="quick_settings_vibrate_title">Vibrate on touch</string>
+    <string name="quick_settings_vibrate_summary">Vibrate when touching tiles</string>
+
+    <!-- QuickSettings collapse panel -->
+    <string name="quick_settings_collapse_title">Auto close panel</string>
+    <string name="quick_settings_collapse_summary">Close the Quick Settings panel upon toggle</string>
 
 </resources>
