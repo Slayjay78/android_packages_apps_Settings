@@ -685,10 +685,6 @@
     <string name="animation_duration_title">Animation duration</string>
     <string name="animation_duration_default">Default</string>
 
-<<<<<<< HEAD
-    <!-- Performance control -->
-    <string name="performance_settings">Performance</string>
-
     <!-- Screen recorder -->
     <string name="screen_recorder_title">Screen recorder</string>
     <string name="screen_recorder_summary">Adjust screen recorder settings</string>
@@ -739,6 +735,4 @@
     <string name="quick_settings_collapse_title">Auto close panel</string>
     <string name="quick_settings_collapse_summary">Close the Quick Settings panel upon toggle</string>
 
-=======
->>>>>>> parent of e1995ed... Settings: bring back PerformanceControl
 </resources>
