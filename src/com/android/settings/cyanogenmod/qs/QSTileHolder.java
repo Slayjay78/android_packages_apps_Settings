@@ -70,7 +70,10 @@ public class QSTileHolder {
             stringId = R.string.hotspot;
         } else if (tileType.equals("notifications")) {
             resId = R.drawable.ic_qs_notifications;
-            stringId = R.string.notifications;        
+            stringId = R.string.notifications;  
+        } else if (tileType.equals("data")) {
+            resId = R.drawable.ic_qs_hotspot;
+            stringId = R.string.data;      
         }
 
         String name = stringId != -1 ? context.getString(stringId) : null;
