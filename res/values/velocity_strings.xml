@@ -737,6 +737,10 @@
     <string name="hotspot">Hotspot</string>
     <string name="notifications">Notifications</string>
     <string name="data">Data</string>
+    <string name="qs_title_profiles">System profiles</string>
+    <string name="qs_title_nfc">NFC</string>
+    <string name="qs_title_compass">Compass</string>
+    <string name="qs_title_lockscreen">Lockscreen</string>
     <string name="qs_action_delete">Delete</string>
     <string name="qs_action_add">Add</string>
     <string name="qs_action_no_more_tiles">No more tiles available</string>
