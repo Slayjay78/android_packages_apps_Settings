@@ -114,6 +114,10 @@ public class QSTileHolder {
                 resourceName = "ic_qs_data_on";
                 stringId = R.string.qs_title_data;
                 break;
+ 	    case QSConstants.TILE_SCREEN_TIMEOUT:
+                resourceName = "ic_qs_screen_timeout_on";
+                stringId = R.string.qs_screentimeout_tile;
+                break;
             default:
                 return null;
         }
