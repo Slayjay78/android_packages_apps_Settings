@@ -746,6 +746,7 @@
     <string name="qs_screentimeout_tile">Screen timeout</string>
     <string name="qs_screentimeout_mode_title">Screen timeout modes</string>
     <string name="qs_tile_lte">LTE</string>
+    <string name="qs_tile_visualizer">AudioFX</string>
     <string name="qs_action_delete">Delete</string>
     <string name="qs_action_add">Add</string>
     <string name="qs_action_no_more_tiles">No more tiles available</string>
