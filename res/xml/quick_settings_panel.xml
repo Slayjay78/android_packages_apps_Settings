@@ -14,6 +14,11 @@
             android:summaryOff="@string/qs_main_tiles_summary_off"
             android:defaultValue="true" />
 
+    <com.android.settings.cyanogenmod.SecureSettingSwitchPreference
+        android:key="qs_use_four_columns"
+        android:title="@string/qs_four_columns_title"
+        android:defaultValue="false" />
+
  	<ListPreference
             android:key="qs_expanded_screentimeout_mode"
             android:dialogTitle="@string/qs_screentimeout_mode_title"
