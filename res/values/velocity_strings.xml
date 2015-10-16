@@ -48,4 +48,6 @@
     <string name="navigation_edit_button_text">Edit</string>
     <string name="navigation_save_button_text">Save</string>
     <string name="navigation_bar_reset_message">Delete current settings and restore the default layout?</string>
+
+    <string name="status_bar_screen_title">Status bar</string>
 </resources>
