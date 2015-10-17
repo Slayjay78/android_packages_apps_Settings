@@ -19,7 +19,10 @@
     <string name="kill_app_longpress_back_summary">Kill the foreground app by long-pressing the back key</string>
     <string name="display_category_navbar_options_title">Navigation bar options</string> 
 
-    <!-- Volume rocker wake -->
+    <!-- Wakeup options -->
+    <string name="display_category_wakeup_options_title">Wakeup options</string>
+    <string name="wakeup_when_plugged_unplugged_title">Wake up on charge</string>
+    <string name="wakeup_when_plugged_unplugged_summary">Wake up device if charger is plugged/unplugged.</string>
     <string name="volume_rocker_wake_title">Volume rocker wake</string>
     <string name="volume_rocker_wake_summary">Pressing the volume keys will wake your device</string>
     <string name="display_category_wakeup_options_title">Wakeup options</string> 
