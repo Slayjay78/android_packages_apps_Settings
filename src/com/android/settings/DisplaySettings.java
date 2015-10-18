@@ -60,7 +60,7 @@ import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.android.settings.chroma.DisplayRotation;
+import com.android.settings.velocity.DisplayRotation;
 
 import java.util.ArrayList;
 import java.util.List;
