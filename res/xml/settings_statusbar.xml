@@ -26,8 +26,8 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:key="category_general_options"
-        android:title="@string/general_string" >
+        android:key="category_qs_options"
+        android:title="@string/quick_settings_title" >
 
         <PreferenceScreen
                 android:title="@string/quick_settings_title"
@@ -36,6 +36,35 @@
                     android:targetPackage="com.android.systemui"
                     android:targetClass="com.android.systemui.tuner.QsActivity" />
         </PreferenceScreen>
+
+    <com.android.settings.cyanogenmod.SecureSettingSwitchPreference
+        android:key="qs_show_brightness_slider"
+        android:title="@string/qs_brightness_slider_title_eos"
+        android:summary="@string/qs_brightness_slider_summary"
+        android:defaultValue="true" />
+
+    <com.android.settings.cyanogenmod.SecureSettingSwitchPreference
+        android:key="quick_settings_vibrate"
+        android:title="@string/quick_settings_vibrate_title"
+        android:summary="@string/quick_settings_vibrate_summary"
+        android:defaultValue="false"/>
+
+    <com.android.settings.cyanogenmod.SecureSettingSwitchPreference
+        android:key="qs_use_four_columns"
+        android:title="@string/qs_four_columns_title"
+        android:defaultValue="false" />
+
+    <com.android.settings.cyanogenmod.SecureSettingSwitchPreference
+        android:key="sysui_qs_main_tiles"
+        android:title="@string/qs_main_tiles_title"
+        android:summaryOn="@string/qs_main_tiles_summary_on"
+        android:summaryOff="@string/qs_main_tiles_summary_off"
+        android:defaultValue="true" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="category_general_options"
+        android:title="@string/general_string" >
 
     <PreferenceScreen
             android:title="@string/status_bar_icon_blacklist_title"
@@ -62,29 +91,5 @@
             android:key="status_bar_brightness_control"
             android:summary="@string/status_bar_brightness_control_summary"
             android:title="@string/status_bar_brightness_control_title" />
-
-    <com.android.settings.cyanogenmod.SecureSettingSwitchPreference
-        android:key="qs_show_brightness_slider"
-        android:title="@string/qs_brightness_slider_title_eos"
-        android:summary="@string/qs_brightness_slider_summary"
-        android:defaultValue="true" />
-
-    <com.android.settings.cyanogenmod.SecureSettingSwitchPreference
-        android:key="quick_settings_vibrate"
-        android:title="@string/quick_settings_vibrate_title"
-        android:summary="@string/quick_settings_vibrate_summary"
-        android:defaultValue="false"/>
-
-    <com.android.settings.cyanogenmod.SecureSettingSwitchPreference
-        android:key="qs_use_four_columns"
-        android:title="@string/qs_four_columns_title"
-        android:defaultValue="false" />
-
-    <com.android.settings.cyanogenmod.SecureSettingSwitchPreference
-        android:key="sysui_qs_main_tiles"
-        android:title="@string/qs_main_tiles_title"
-        android:summaryOn="@string/qs_main_tiles_summary_on"
-        android:summaryOff="@string/qs_main_tiles_summary_off"
-        android:defaultValue="true" />
     </PreferenceCategory>
 </PreferenceScreen>
