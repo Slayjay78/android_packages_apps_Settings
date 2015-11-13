@@ -51,6 +51,7 @@
     <string name="notification_light_missed_call_title">Missed call</string>
     <string name="notification_light_voicemail_title">Voicemail</string>
     <string name="allow_lights_title">Lights in do not disturb mode</string> 
+    <string name="notification_light_screen_on">Lights with screen on</string> 
 
     <!-- kill app long press back -->
     <string name="kill_app_longpress_back">Kill app back button</string>
