@@ -16,6 +16,8 @@
 
 package com.android.settings.blacklist;
 
+import com.android.internal.logging.MetricsLogger; 
+
 import android.content.Context;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
@@ -141,5 +143,10 @@ public class BlacklistPreferences extends SettingsPreferenceFragment implements
         }
 
         pref.setSummary(getString(summaryResId, getString(typeResId)));
+    }
+
+    @Override
+    protected int getMetricsCategory() {
+        return MetricsLogger.PRIVACY;
     }
 }

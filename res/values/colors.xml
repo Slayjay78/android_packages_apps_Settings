@@ -103,5 +103,6 @@
     <!-- Accent color that matches the settings launcher icon -->
     <color name="icon_accent">#ffabffec</color>
 
+    <color name="theme_accent">#ff009688</color>
     <color name="floating_action_button_touch_tint">#80ffffff</color>
 </resources>
