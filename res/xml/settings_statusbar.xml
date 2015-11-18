@@ -14,4 +14,14 @@
     	android:summary="@string/battery2_summary" />
     </PreferenceCategory>
 
+    <PreferenceCategory
+        android:key="category_clock_options"
+        android:title="@string/display_category_clock_options_title" >
+
+    <PreferenceScreen
+        android:fragment="com.android.settings.velocity.ClockSettings"
+        android:key="clock_settings"
+        android:title="@string/status_bar_clock"
+    	android:summary="@string/status_bar_clock_summary" />
+    </PreferenceCategory>
 </PreferenceScreen>
