@@ -15,8 +15,6 @@
     <string name="reset_string">Reset</string>
     <string name="ok">Okay</string>
     <string name="reset">Reset</string>
-    <string name="add">Add</string>
-    <string name="choose_app">Choose app</string>
 
     <!-- kill app long press back -->
     <string name="kill_app_longpress_back">Kill app back button</string>
