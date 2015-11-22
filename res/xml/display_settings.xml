@@ -155,11 +155,4 @@
                 android:dependency="doze" />
 
     </PreferenceCategory>
-=======
-        <PreferenceScreen
-                android:key="expanded_desktop"
-                android:title="@string/power_menu_expanded_desktop"
-                android:fragment="com.android.settings.applications.ExpandedDesktopPreferenceFragment" />
-
->>>>>>> 330987c... Settings: Squashed commit for expanded desktop
 </PreferenceScreen>
