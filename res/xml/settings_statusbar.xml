@@ -32,4 +32,10 @@
         android:entryValues="@array/quick_pulldown_values"
         android:persistent="false" />
 
+    <PreferenceScreen
+        android:fragment="com.android.settings.velocity.CarrierLabel"
+        android:key="carrier_options"
+        android:title="@string/carrier_title"
+        android:summary="@string/carrier_options_summary" />
+
 </PreferenceScreen>
