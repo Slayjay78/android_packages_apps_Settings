@@ -217,4 +217,10 @@
     <string name="swap_volume_buttons_title">Volume button swap</string>
     <string name="swap_volume_buttons_summary">Adjust volume buttons action based on current rotation</string>
  
+    <!-- Lock screen settings -->
+    <string name="lockscreen_title">Lock screen</string>
+    <string name="lockscreen_settings_title">Lockscreen wallpaper</string>
+    <string name="lockscreen_wallpaper_title">Wallpaper</string>
+    <string name="lockscreen_wallpaper_set_title">Set lock screen wallpaper</string>
+    <string name="lockscreen_wallpaper_clear_title">Clear lock screen wallpaper</string>
 </resources>
