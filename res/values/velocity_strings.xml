@@ -230,6 +230,8 @@
     <string name="recents_show_searchbar">Recents panel Search bar</string>
     <string name="recents_searchbar_summary_enabled">Search bar in recents menu is enabled</string>
     <string name="recents_searchbar_summary_disabled">Search bar in recents menu is disabled</string>
+    <string name="recents_show_fullscreen">Fullscreen Recents</string>
+    <string name="recents_fullscreen_summary">Enable immersive mode for recents screen</string>
 
     <!-- Status bar brightness control -->
     <string name="status_bar_brightness_control_title">Brightness control</string>
@@ -246,4 +248,6 @@
     <string name="link_volume_option_title">Link ring and notification volumes</string>
     <string name="notification_volume_option_title">Notification volume</string>
     <string name="ring_notification_volume_option_tile">Ring and notification volume</string> 
+
+
 </resources>
