@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+4<?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright (C) 2014 The CyanogenMod Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
@@ -41,7 +41,7 @@
                 android:padding="8dp"
                 android:layout_below="@+id/container"
                 settings:min="0"
-                settings:max="10"
+                settings:max="4"
                 settings:defaultValue="1.0"
                 settings:digits="1" />
 
