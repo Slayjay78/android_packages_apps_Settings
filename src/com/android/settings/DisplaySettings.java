@@ -247,15 +247,6 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         } else {
             removePreference(KEY_DOZE_CATEGORY);
         }
-
-        mNightModePreference = (ListPreference) findPreference(KEY_NIGHT_MODE);
-        if (mNightModePreference != null) {
-            final UiModeManager uiManager = (UiModeManager) getSystemService(
-                    Context.UI_MODE_SERVICE);
-            final int currentNightMode = uiManager.getNightMode();
-            mNightModePreference.setValue(String.valueOf(currentNightMode));
-            mNightModePreference.setOnPreferenceChangeListener(this);
-        }
     }
 
     private static boolean allowAllRotations(Context context) {
