@@ -58,6 +58,8 @@ public class RecentPanel extends SettingsPreferenceFragment implements DialogCre
         return MetricsLogger.DEVELOPMENT;
     }
 
+    private static final String RECENTS_FULL_SCREEN = "recents_full_screen";
+    private static final String RECENTS_SHOW_SEARCH_BAR = "recents_show_search_bar";
     private static final String TAG = "RecentPanelSettings";
 
     // Preferences
@@ -79,6 +81,8 @@ public class RecentPanel extends SettingsPreferenceFragment implements DialogCre
     private static final String RECENT_CARD_TEXT_COLOR =
             "recent_card_text_color";
 
+    private SwitchPreference mRecentsSearchBar;
+    private SwitchPreference mRecentsFullscreen;
     private SwitchPreference mUseSlimRecents;
     private SwitchPreference mShowRunningTasks;
     private SlimSeekBarPreference mMaxApps;
@@ -100,12 +104,30 @@ public class RecentPanel extends SettingsPreferenceFragment implements DialogCre
         ContentResolver resolver = getActivity().getContentResolver();
         PreferenceScreen prefSet = getPreferenceScreen();
 
+        mRecentsSearchBar = (SwitchPreference) prefSet.findPreference(RECENTS_SHOW_SEARCH_BAR);
+        mRecentsFullscreen = (SwitchPreference) prefSet.findPreference(RECENTS_FULL_SCREEN);
+
         mUseSlimRecents = (SwitchPreference) prefSet.findPreference(USE_SLIM_RECENTS);
         mUseSlimRecents.setChecked(Settings.System.getInt(resolver,
                 Settings.System.USE_SLIM_RECENTS, 0) == 1);
         mUseSlimRecents.setOnPreferenceChangeListener(this);
 
         updatePreference();
+    }
+
+    private void updatePreference() {
+        boolean slimRecent = Settings.System.getInt(getActivity().getContentResolver(),
+                    Settings.System.USE_SLIM_RECENTS, 0) == 1;
+
+        if (slimRecent) {
+            mRecentsSearchBar.setEnabled(false);
+            mRecentsFullscreen.setEnabled(false);
+            initializeAllPreferences();
+            updateRecentPanelPreferences();
+        } else {
+            mRecentsSearchBar.setEnabled(true);
+            mRecentsFullscreen.setEnabled(true);
+        }
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {

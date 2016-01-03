@@ -16,7 +16,29 @@
 
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:title="@string/slim_recents_panel">
+    android:title="@string/recents_settings_title">
+
+    <PreferenceCategory
+        android:key="aosp_recents_panel"
+        android:title="@string/recents_panel_category" >
+
+        <com.android.settings.cyanogenmod.SystemSettingSwitchPreference
+            android:key="recents_show_search_bar"
+            android:title="@string/recents_show_searchbar"
+            android:summaryOn="@string/recents_searchbar_summary_enabled"
+            android:summaryOff="@string/recents_searchbar_summary_disabled"
+            android:defaultValue="true" />
+
+        <com.android.settings.cyanogenmod.SystemSettingSwitchPreference
+            android:key="recents_full_screen"
+            android:title="@string/recents_show_fullscreen"
+            android:summary="@string/recents_fullscreen_summary"
+            android:defaultValue="false" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="slim_recents_panel"
+        android:title="@string/slim_recents_panel" >
 
         <SwitchPreference
             android:key="use_slim_recents"
@@ -82,5 +104,6 @@
             android:title="@string/recent_card_text_color_title"
             android:defaultValue="0x00ffffff"
             alphaSlider="true" />
+    </PreferenceCategory>
 
 </PreferenceScreen>
