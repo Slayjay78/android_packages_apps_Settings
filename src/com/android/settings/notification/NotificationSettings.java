@@ -29,6 +29,7 @@ import android.content.pm.ServiceInfo;
 import android.database.ContentObserver;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteException;
+import android.hardware.fingerprint.FingerprintManager;
 import android.media.AudioManager;
 import android.media.AudioSystem;
 import android.media.RingtoneManager;
@@ -44,6 +45,7 @@ import android.os.Vibrator;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceCategory;
+import android.preference.PreferenceScreen;
 import android.preference.SeekBarVolumizer;
 import android.preference.TwoStatePreference;
 import android.preference.SwitchPreference;
@@ -57,6 +59,7 @@ import com.android.internal.logging.MetricsLogger;
 import com.android.internal.widget.LockPatternUtils;
 import com.android.settings.DropDownPreference;
 import com.android.settings.R;
+import com.android.settings.preference.SystemSettingSwitchPreference;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.Utils;
 import com.android.settings.search.BaseSearchIndexProvider;
@@ -87,6 +90,7 @@ public class NotificationSettings extends SettingsPreferenceFragment implements 
     private static final String KEY_INCREASING_RING_VOLUME = "increasing_ring_volume";
     private static final String KEY_ZEN_ACCESS = "manage_zen_access";
     private static final String KEY_ZEN_MODE = "zen_mode";
+    private static final String KEY_FINGERP_VIBRATE = "fingerprint_success_vib";
 
     private static final String[] RESTRICTED_KEYS = {
         KEY_MEDIA_VOLUME,
@@ -138,6 +142,8 @@ public class NotificationSettings extends SettingsPreferenceFragment implements 
     private int mRingerMode = -1;
     private SwitchPreference mVolumeLinkNotification;
     private PreferenceCategory mSoundCategory;
+    private FingerprintManager mFingerprintManager;
+    private SystemSettingSwitchPreference mFingerprintVib;
 
     private UserManager mUserManager;
 
@@ -155,6 +161,7 @@ public class NotificationSettings extends SettingsPreferenceFragment implements 
         mAudioManager = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
         mVoiceCapable = Utils.isVoiceCapable(mContext);
         mSecure = new LockPatternUtils(getActivity()).isSecure(UserHandle.myUserId());
+        PreferenceScreen prefScreen = getPreferenceScreen();
 
         mAudioManager = (AudioManager) mContext.getSystemService(Context.AUDIO_SERVICE);
         mVibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
@@ -163,7 +170,6 @@ public class NotificationSettings extends SettingsPreferenceFragment implements 
         }
 
         addPreferencesFromResource(R.xml.notification_settings);
-
         mSoundCategory = (PreferenceCategory) findPreference(KEY_SOUND);
 
         initVolumePreference(KEY_MEDIA_VOLUME, AudioManager.STREAM_MUSIC,
@@ -184,6 +190,12 @@ public class NotificationSettings extends SettingsPreferenceFragment implements 
             mSoundCategory.removePreference(mSoundCategory.findPreference(KEY_RING_VOLUME));
             mSoundCategory.removePreference(mSoundCategory.findPreference(
                     KEY_VOLUME_LINK_NOTIFICATION));
+        }
+
+        mFingerprintManager = (FingerprintManager) getActivity().getSystemService(Context.FINGERPRINT_SERVICE);
+        mFingerprintVib = (SystemSettingSwitchPreference) findPreference(KEY_FINGERP_VIBRATE);
+        if (!mFingerprintManager.isHardwareDetected()){
+            prefScreen.removePreference(mFingerprintVib);
         }
 
         initRingtones(mSoundCategory);

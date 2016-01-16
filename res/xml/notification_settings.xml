@@ -119,6 +119,13 @@
         android:key="notification"
         android:title="@string/notification_section_header" >
 
+        <!-- Fingerprint vibration -->
+        <com.android.settings.preference.SystemSettingSwitchPreference
+                android:key="fingerprint_success_vib"
+                android:title="@string/fprint_sucess_vib_title"
+                android:summary="@string/fprint_sucess_vib_summary"
+                android:defaultValue="true" />
+
         <!-- Pulse notification light -->
         <PreferenceScreen
                 android:key="notification_light"

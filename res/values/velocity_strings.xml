@@ -659,4 +659,7 @@
     <!-- Keyguard bouncer alpha -->
     <string name="lockscreen_alpha">Lockscreen alpha</string>
     <string name="lockscreen_security_alpha">Lockscreen bouncer alpha</string>
+
+    <string name="fprint_sucess_vib_title">Fingerprint authentication vibration</string>
+    <string name="fprint_sucess_vib_summary">Vibrate on successful fingerprint authentication</string>
 </resources>
