@@ -28,7 +28,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Vibrator;
+import android.preference.ListPreference;
+import android.preference.Preference.OnPreferenceChangeListener;
+import android.preference.Preference;
+import android.preference.PreferenceFragment;
+import android.preference.PreferenceScreen;
+import android.preference.SwitchPreference;
 import android.provider.SearchIndexableResource;
+import android.provider.Settings;
 import android.provider.Settings.Global;
 import android.provider.Settings.System;
 import android.telephony.TelephonyManager;
@@ -66,6 +73,9 @@ public class OtherSoundSettings extends SettingsPreferenceFragment implements In
     private static final String KEY_VIBRATE_ON_TOUCH = "vibrate_on_touch";
     private static final String KEY_DOCK_AUDIO_MEDIA = "dock_audio_media";
     private static final String KEY_EMERGENCY_TONE = "emergency_tone";
+    private static final String PREF_LESS_NOTIFICATION_SOUNDS = "less_notification_sounds"; 
+
+    private ListPreference mAnnoyingNotifications; 
 
     private static final SettingPref PREF_DIAL_PAD_TONES = new SettingPref(
             TYPE_SYSTEM, KEY_DIAL_PAD_TONES, System.DTMF_TONE_WHEN_DIALING, DEFAULT_ON) {
@@ -184,14 +194,14 @@ public class OtherSoundSettings extends SettingsPreferenceFragment implements In
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         addPreferencesFromResource(R.xml.other_sound_settings);
+        final PreferenceScreen prefScreen = getPreferenceScreen();
 
-        mContext = getActivity();
-
-        for (SettingPref pref : PREFS) {
-            pref.init(this);
-        }
+        mAnnoyingNotifications = (ListPreference) findPreference(PREF_LESS_NOTIFICATION_SOUNDS);
+        int notificationThreshold = Settings.System.getInt(getActivity().getContentResolver(),
+		        Settings.System.MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD, 0);
+        mAnnoyingNotifications.setValue(Integer.toString(notificationThreshold));
+        mAnnoyingNotifications.setOnPreferenceChangeListener(this);
     }
 
     @Override
@@ -267,4 +277,14 @@ public class OtherSoundSettings extends SettingsPreferenceFragment implements In
             return rt;
         }
     };
+
+    public boolean onPreferenceChange(Preference preference, Object objValue) {
+        final String key = preference.getKey();
+        if (PREF_LESS_NOTIFICATION_SOUNDS.equals(key)) {
+            final int val = Integer.valueOf((String) objValue);
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD, val);
+        }
+        return true;
+    }
 }
