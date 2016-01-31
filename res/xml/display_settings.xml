@@ -122,6 +122,11 @@
 		android:fragment="com.android.settings.velocity.LockScreenSettings"
 		android:title="@string/lockscreen_title" />
 
+   <PreferenceScreen
+    	android:key="battery_bar"
+        android:fragment="com.android.settings.velocity.BatteryBar"
+        android:title="@string/battery_bar" />
+
     <PreferenceScreen
         android:key="power_menu"
         android:title="@string/power_menu_title"
