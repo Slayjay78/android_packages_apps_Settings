@@ -546,4 +546,6 @@
     <string name="dim_nav_buttons_animate_summary">Animate the alpha fade</string>
     <string name="dim_nav_buttons_animate_duration_title">Animation duration</string>
     <string name="dim_nav_buttons_animate_duration_summary">Duration (in milliseconds) of the alpha animation</string>
+
+    <string name="rusty_sound_title">Rusted sound options</string>
 </resources>

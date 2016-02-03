@@ -61,12 +61,6 @@
                 android:title="@string/vibrate_when_ringing_title"
                 android:persistent="false" />
 
-        <!-- Volume Steps -->
-        <PreferenceScreen
-                android:key="volume_steps"
-                android:title="@string/volume_steps_title"
-                android:fragment="com.android.settings.velocity.VolumeSteps" />
-
         <!-- Interruptions -->
         <PreferenceScreen
                 android:key="zen_mode"
@@ -89,6 +83,11 @@
                 android:dialogTitle="@string/notification_ringtone_title"
                 android:persistent="false"
                 android:ringtoneType="notification" />
+
+        <PreferenceScreen
+                android:key="rusty_sound_settings"
+                android:fragment="com.android.settings.velocity.RustySoundSettings"
+                android:title="@string/rusty_sound_title"/>
 
         <!-- Other sounds -->
         <Preference
