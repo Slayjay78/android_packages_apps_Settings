@@ -49,6 +49,16 @@
 
     </PreferenceCategory>
 
+        <com.android.settings.preference.SystemSettingSwitchPreference
+            android:key="hide_lockscreen_clock"
+            android:title="@string/hide_lockscreen_clock_title"
+            android:defaultValue="true" />
+
+        <com.android.settings.preference.SystemSettingSwitchPreference
+            android:key="hide_lockscreen_date"
+            android:title="@string/hide_lockscreen_date_title"
+            android:defaultValue="true" />
+
     <com.android.settings.cyanogenmod.SystemSettingSwitchPreference
             android:key="lockscreen_quick_unlock_control"
             android:title="@string/unlock_quick_unlock_control_title"
