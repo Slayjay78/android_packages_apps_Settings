@@ -87,7 +87,14 @@
                 android:title="@string/build_number"
                 android:summary="@string/device_info_default"/>
 
-        <!-- psx build date -->
+       <!-- GCC build info -->
+       <Preference android:key="dtc_version"
+                style="?android:preferenceInformationStyle"
+                android:title="@string/dtc_version"
+                android:summary="@string/dtc_version_default"
+                android:selectable="false" />
+
+        <!-- Rusted build date -->
         <Preference android:key="build_date"
                 style="?android:preferenceInformationStyle"
                 android:title="@string/build_date"

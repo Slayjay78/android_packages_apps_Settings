@@ -643,4 +643,8 @@
     <string name="network_traffic_autohide_threshold">Inactivity threshold</string>
     <string name="network_traffic_hidearrow">Hide arrows</string>
     <string name="network_traffic_hidearrow_summary">Hide the arrows in the traffic indicator</string>
+
+    <!-- Clang version -->
+    <string name="dtc_version">Clang</string>
+    <string name="dtc_version_default">None</string>
 </resources>
