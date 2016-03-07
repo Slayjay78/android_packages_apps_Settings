@@ -54,6 +54,7 @@ public class PowerMenuFragment extends PreferenceFragment {
     private SwitchPreference mAssistPref;
     private SwitchPreference mVoicePref;
     private SwitchPreference mBugReportPref;
+    private SwitchPreference mFlashlightPref;
     private SwitchPreference mSilentPref;
 
     Context mContext;
@@ -99,6 +100,8 @@ public class PowerMenuFragment extends PreferenceFragment {
                 mVoicePref = (SwitchPreference) findPreference(GLOBAL_ACTION_KEY_VOICEASSIST );
             } else if (action.equals(GLOBAL_ACTION_KEY_BUGREPORT)) {
                 mBugReportPref = (SwitchPreference) findPreference(GLOBAL_ACTION_KEY_BUGREPORT);
+            } else if (action.equals(GLOBAL_ACTION_KEY_TORCH)) {
+                mFlashlightPref = (SwitchPreference) findPreference(GLOBAL_ACTION_KEY_TORCH);
             } else if (action.equals(GLOBAL_ACTION_KEY_SILENT)) {
                 mSilentPref = (SwitchPreference) findPreference(GLOBAL_ACTION_KEY_SILENT);
             }
@@ -218,6 +221,10 @@ public class PowerMenuFragment extends PreferenceFragment {
         } else if (preference == mBugReportPref) {
             value = mBugReportPref.isChecked();
             updateUserConfig(value, GLOBAL_ACTION_KEY_BUGREPORT);
+
+        } else if (preference == mFlashlightPref) {
+            value = mFlashlightPref.isChecked();
+            updateUserConfig(value, GLOBAL_ACTION_KEY_TORCH);
 
         } else if (preference == mSilentPref) {
             value = mSilentPref.isChecked();
