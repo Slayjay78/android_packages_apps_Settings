@@ -25,6 +25,26 @@
     	android:summary="@string/status_bar_clock_summary" />
     </PreferenceCategory>
 
+    <PreferenceCategory
+        android:key="category_general_options"
+        android:title="@string/general_string" >
+
+        <PreferenceScreen
+                android:title="@string/quick_settings_title"
+                android:summary="@string/quick_settings_summary" >
+            <intent android:action="android.intent.action.MAIN"
+                    android:targetPackage="com.android.systemui"
+                    android:targetClass="com.android.systemui.tuner.QsActivity" />
+        </PreferenceScreen>
+
+    <PreferenceScreen
+            android:title="@string/status_bar_icon_blacklist_title"
+            android:summary="@string/status_bar_icon_blacklist_summary" >
+        <intent android:action="android.intent.action.MAIN"
+                android:targetPackage="com.android.systemui"
+                android:targetClass="com.android.systemui.tuner.TunerActivity" />
+    </PreferenceScreen>
+
     <ListPreference
         android:key="quick_pulldown"
         android:title="@string/title_quick_pulldown"
@@ -66,5 +86,5 @@
         android:summaryOn="@string/qs_main_tiles_summary_on"
         android:summaryOff="@string/qs_main_tiles_summary_off"
         android:defaultValue="true" />
-
+    </PreferenceCategory>
 </PreferenceScreen>
