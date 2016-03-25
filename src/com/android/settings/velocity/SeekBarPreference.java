@@ -1,4 +1,4 @@
-package com.android.settings.benzo;
+package com.android.settings.velocity;
 
 import android.content.Context;
 import android.content.res.TypedArray;
