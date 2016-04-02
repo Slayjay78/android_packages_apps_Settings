@@ -57,7 +57,7 @@ public class HeadsUpSettings extends SettingsPreferenceFragment
 
     private static final String PREF_HEADS_UP_TIME_OUT = "heads_up_time_out";
 
-    private ListPreference mHeadsUpTimeOut
+    private ListPreference mHeadsUpTimeOut;
 
     private PackageListAdapter mPackageAdapter;
     private PackageManager mPackageManager;

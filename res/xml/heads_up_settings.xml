@@ -27,6 +27,7 @@
         android:title="@string/force_headsup_title"
         android:summary="@string/force_headsup_summary"
         android:defaultValue="false"
+        android:dependency="heads_up_notifications_enabled"
         android:disableDependentsState="true" />
 
     <ListPreference
@@ -34,6 +35,7 @@
         android:title="@string/heads_up_time_out_title"
         android:entries="@array/heads_up_time_out_entries"
         android:entryValues="@array/heads_up_time_out_values"
+        android:dependency="heads_up_notifications_enabled"
         android:persistent="false" />
 
     <PreferenceCategory
