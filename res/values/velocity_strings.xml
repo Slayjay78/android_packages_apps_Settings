@@ -647,4 +647,7 @@
     <!-- Clang version -->
     <string name="dtc_version">Clang</string>
     <string name="dtc_version_default">None</string>
+
+    <string name="double_tap_sleep_anywhere_title">Tap lockscreen anywhere to sleep</string>
+    <string name="double_tap_sleep_anywhere_summary">Double tap anywhere on lockscreen to put device to sleep</string>
 </resources>
